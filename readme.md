@@ -1,3 +1,5 @@
+![header](design/export/header.min.png)
+
 # Zench 
 
 Zench is a lightweight benchmarking library for Rust, designed for seamless workflow integration, speed, and productivity. Run benchmarks anywhere in your codebase and integrate performance checks directly into your `cargo test` pipeline.

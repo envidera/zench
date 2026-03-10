@@ -1,5 +1,5 @@
 #![allow(clippy::let_and_return)]
-#![doc = include_str!("../../readme.md")]
+#![doc = include_str!("../README.md")]
 //!
 //! # Item Details
 //! ## Ready-to-use

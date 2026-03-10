@@ -22,15 +22,16 @@ version = "0.1.0"
 authors = ["Andrio Stark <andrio@envidera.com>"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
-description = "A benchmarking library for Rust, built for real development workflows."
+description = "Zench is a lightweight benchmarking library for Rust, designed for seamless workflow integration "
 repository = "https://github.com/envidera/zench"
 homepage = "https://github.com/envidera/zench"
 readme = "README.md"
 keywords = ["benchmark", "performance", "profiling", "analysis"]
 categories = [
+    "development-tools",
+    "development-tools::debugging",
     "development-tools::profiling",
     "development-tools::testing",
-    "rust-patterns",
 ]
 
 

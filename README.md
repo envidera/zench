@@ -1,6 +1,6 @@
-![header](design/export/header.min.png)
+![header](https://raw.githubusercontent.com/envidera/zench/main/design/export/header.min.png)
 
-# Zench 
+# Zench
 
 Zench is a lightweight benchmarking library for Rust, designed for seamless workflow integration, speed, and productivity. Run benchmarks anywhere in your codebase and integrate performance checks directly into your `cargo test` pipeline.
 

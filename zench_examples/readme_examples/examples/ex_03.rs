@@ -38,25 +38,26 @@ mod tests {
 /*
 
 Report     Top 2
-Filters    Sort Mean > Filter N(2)
+Filters    Sort Median > Filter N(2)
 
 Benchmark  fib 5
-Time       Mean: 9.300ns
-Stability  Std.Dev: ± 0.014ns | CV: 0.15%
+Time       Median: 9.294ns
+Stability  Std.Dev: ± 0.019ns | CV: 0.21%
 Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench/examples/ex_03.rs:23:9
+Location   zench_examples/readme_examples/examples/ex_03.rs:23:9
 
 Benchmark  fib 8
-Time       Mean: 40.650ns
-Stability  Std.Dev: ± 0.245ns | CV: 0.60%
-Samples    Count: 94 | Iters/sample: 524,288 | Outliers: 8.51%
-Location   zench/examples/ex_03.rs:23:9
+Time       Median: 40.243ns
+Stability  Std.Dev: ± 0.110ns | CV: 0.27%
+Samples    Count: 95 | Iters/sample: 524,288 | Outliers: 0.00%
+Location   zench_examples/readme_examples/examples/ex_03.rs:23:9
 
-total time: 6.985312904 sec
-rust: 1.93.0 | profile release
+
+total time: 7.124152612 sec
+rust: 1.93.1 | profile release
 zench: 0.1.0
 system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12)
-2026-02-19 19:38:26 UTC
+cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
+2026-03-10 10:45:35 UTC
 
 */

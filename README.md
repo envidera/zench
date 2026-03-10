@@ -62,7 +62,7 @@ fn bench_fib() {
 Run the benchmark test
 
 ```bash
-ZENCH=warn cargo test --release
+ZENCH=warn cargo test --release -- --no-capture
 ```
 
 You'll get a detailed report directly in your terminal:
@@ -347,7 +347,7 @@ fn bench_fastest_version() {
 Run the benchmark test
 
 ```bash
-ZENCH=warn cargo test --release
+ZENCH=warn cargo test --release -- --no-capture
 ```
 
 You'll get a detailed report
@@ -461,6 +461,10 @@ cargo bench
 ```
 
 > Note: `cargo bench` runs in release mode by default.
+
+> Note: Use `-- --no-capture` to see the benchmark report results.
+>
+> ZENCH=warn cargo test --release -- --no-capture
 
 ### Run in editor
 

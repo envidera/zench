@@ -11,7 +11,7 @@ Zench is a lightweight benchmarking library for Rust, designed for seamless work
 - **Cargo-native workflow** - works with cargo `test` and `bench`.
 - **Automatic measurement strategy** - benchmark from nanoseconds, to several seconds
 - **Configurable** - fine-tune to your project's specific needs.
-- **Programmable reporting** - Filter, inspect, and trigger custom logic on benchmark results directly from code.
+- **Programmable reporting** - Filter, inspect, and trigger custom code logic on benchmark results.
 - **Performance Assertions** - warn or fail tests when performance expectations are not met
 - **No external dependencies** - uses only Rust’s standard library.
 - **No Nightly** - works on `stable Rust`.  

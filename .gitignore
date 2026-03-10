@@ -1,14 +1,8 @@
 # temp folders
+.tmp
+
 target
 design
-
-# enable later
-#docs
-docs/*
-
-#!docs/img
-
-.tmp
 .vscode
 .zed
 

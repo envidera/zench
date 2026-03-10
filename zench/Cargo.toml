@@ -1,0 +1,24 @@
+[package]
+name = "zench"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+# For security reasons, no crate is published to crates.io
+# unless the crate explicitly requests it by setting 'publish = true'
+# in its own Cargo.toml.
+publish = false
+
+# Minimum supported Rust version (msrv)
+rust-version.workspace = true
+
+
+[lib]
+name = "zench"

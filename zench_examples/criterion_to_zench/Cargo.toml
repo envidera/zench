@@ -1,0 +1,42 @@
+[package]
+name = "criterion_to_zench"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+rust-version.workspace = true
+publish = false
+
+
+[dev-dependencies]
+zench.workspace = true
+criterion = "0.7.0"
+
+# ------------------------------
+
+[[bench]]
+name = "fibonacci_zench"
+harness = false
+
+[[bench]]
+name = "fibonacci_criterion"
+harness = false
+
+# ------------------------------
+
+[[bench]]
+name = "loop_format_zench"
+harness = false
+
+[[bench]]
+name = "loop_format_criterion"
+harness = false
+
+# ------------------------------
+
+[[bench]]
+name = "sleep_zench"
+harness = false
+
+[[bench]]
+name = "sleep_criterion"
+harness = false

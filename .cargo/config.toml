@@ -1,0 +1,102 @@
+
+[build]
+
+# ----------------------------------------------------------
+# Core Clippy groups (safe to enable)
+# ----------------------------------------------------------
+# clippy::all				all lints that are on by default (correctness, suspicious, style, complexity, perf)
+# clippy::correctness		code that is outright wrong or useless
+# clippy::suspicious		code that is most likely wrong or useless
+# clippy::style				code that should be written in a more idiomatic way
+# clippy::complexity		code that should be written in a more idiomatic way
+# clippy::perf				code that can be written to run faster
+# clippy::cargo				Lints related to Cargo configuration
+#
+# Clippy Documentation
+# https://doc.rust-lang.org/clippy/usage.html
+# https://github.com/rust-lang/rust-clippy
+
+
+# Lints
+# https://rust-lang.github.io/rust-clippy/stable/index.html
+
+# cSpell: disable
+rustflags = [
+
+    "-Wclippy::all",
+    "-Dclippy::correctness",
+    "-Wclippy::suspicious",
+    "-Wclippy::style",
+    "-Wclippy::complexity",
+    "-Wclippy::perf",
+    "-Wclippy::cargo",
+    #--------------------------
+    #"-Wunsafe_code",
+    #"-Wclippy::absolute_paths",
+    #"-Wclippy::allow_attributes_without_reason",
+    #"-Wclippy::arbitrary_source_item_ordering",
+    #"-Wclippy::arithmetic_side_effects",
+    #"-Wclippy::as_conversions",
+    #"-Wclippy::bool_comparison",
+    #"-Wclippy::cast_lossless",
+    #"-Wclippy::cast_possible_truncation",
+    #"-Wclippy::cast_possible_wrap",
+    #"-Wclippy::cast_sign_loss",
+    #"-Wclippy::cognitive_complexity",
+    #"-Wclippy::comparison_to_empty",
+    #"-Wclippy::dbg_macro",
+    #"-Wclippy::doc_markdown",
+    #"-Wclippy::enum_glob_use",
+    #"-Wclippy::expect_used",
+    #"-Wclippy::float_cmp",
+    #"-Wclippy::float_cmp_const",
+    #"-Wclippy::float_equality_without_abs",
+    #"-Wclippy::format_push_string",
+    #"-Wclippy::inconsistent_struct_constructor",
+    #"-Wclippy::indexing_slicing",
+    #"-Wclippy::inefficient_to_string",
+    #"-Wclippy::integer_division",
+    #"-Wclippy::into_iter_on_ref",
+    #"-Wclippy::large_types_passed_by_value",
+    #"-Wclippy::manual_flatten",
+    #"-Wclippy::manual_string_new",
+    #"-Wclippy::manual_unwrap_or",
+    #"-Wclippy::match_same_arms",
+    #"-Wclippy::min_ident_chars",
+    #"-Wclippy::missing_const_for_fn",
+    #"-Wclippy::missing_docs_in_private_items",
+    #"-Wclippy::missing_errors_doc",
+    #"-Wclippy::missing_inline_in_public_items",
+    #"-Wclippy::missing_panics_doc",
+    #"-Wclippy::must_use_candidate",
+    #"-Wclippy::needless_borrow",
+    #"-Wclippy::needless_collect",
+    #"-Wclippy::needless_return",
+    #"-Wclippy::option_if_let_else",
+    #"-Wclippy::panic",
+    #"-Wclippy::panic_in_result_fn",
+    #"-Wclippy::print_stderr",
+    #"-Wclippy::print_stdout",
+    #"-Wclippy::redundant_clone",
+    #"-Wclippy::shadow_unrelated",
+    #"-Wclippy::similar_names",
+    #"-Wclippy::std_instead_of_core",
+    #"-Wclippy::str_to_string",
+    #"-Wclippy::todo",
+    #"-Wclippy::too_many_arguments",
+    #"-Wclippy::trivially_copy_pass_by_ref",
+    #"-Wclippy::unimplemented",
+    #"-Wclippy::unnecessary_to_owned",
+    #"-Wclippy::unreachable",
+    #"-Wclippy::unseparated_literal_suffix",
+    #"-Wclippy::unused_self",
+    #"-Wclippy::unwrap_used",
+    #"-Wclippy::use_debug",
+    #"-Wclippy::useless_format",
+    #"-Wclippy::useless_let_if_seq",
+    #"-Wclippy::wildcard_dependencies",
+    #"-Wclippy::wildcard_imports",
+    #--------------------------
+    # Allow
+    "-Aclippy::module_inception",
+]

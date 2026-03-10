@@ -1,0 +1,48 @@
+[workspace]
+members = [
+    "zench",
+    "zench_examples/some_examples",
+    "zench_examples/criterion_to_zench",
+    "zench_examples/cpu_stability_trait_for_report",
+    "zench_examples/readme_examples",
+
+]
+
+default-members = [
+    "zench"
+]
+
+resolver = "3"
+
+# --------------------------------------------------------------
+
+[workspace.package]
+
+version = "0.1.0"
+authors = ["Andrio Stark <andrio@envidera.com>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "A benchmarking library for Rust, built for real development workflows."
+repository = "https://github.com/envidera/zench"
+homepage = "https://github.com/envidera/zench"
+readme = "README.md"
+keywords = ["benchmark", "performance", "profiling", "analysis"]
+categories = [
+    "development-tools::profiling",
+    "development-tools::testing",
+    "rust-patterns",
+]
+
+
+# For security reasons, no crate is published to crates.io
+# unless the crate explicitly requests it by setting 'publish = true'
+# in its own Cargo.toml.
+publish = false
+
+# Minimum supported Rust version (msrv)
+rust-version = "1.87"
+
+# --------------------------------------------------------------
+[workspace.dependencies]
+zench = { path = "zench", version = "0.1.0", features = [] }
+shared = { path = "zench_examples/shared", version = "0.1.0" }

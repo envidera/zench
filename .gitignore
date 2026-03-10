@@ -1,0 +1,19 @@
+# temp folders
+target
+design
+
+# enable later
+#docs
+docs/*
+
+#!docs/img
+
+.tmp
+.vscode
+.zed
+
+# images
+*.ppm
+*.jpg
+*.svg
+*.txt

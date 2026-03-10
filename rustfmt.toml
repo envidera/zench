@@ -1,0 +1,21 @@
+
+# Default value: "Tall"
+# Possible values: "Compressed", "Tall", "Vertical"
+# https://rust-lang.github.io/rustfmt/?version=v1.8.0&search=#fn_params_layout
+#fn_params_layout = "Compressed"
+
+
+# Default value: Never
+# Possible values: Always, Never, Preserve
+# https://rust-lang.github.io/rustfmt/?version=v1.8.0&search=#match_arm_leading_pipes
+#match_arm_leading_pipes = "Always"
+
+# default value: 50
+# Possible values: any positive integer that is less than or equal to the value specified for max_width
+# https://rust-lang.github.io/rustfmt/?version=v1.8.0&search=#single_line_let_else_max_width
+#single_line_let_else_max_width = 0
+
+
+# Default value: 60
+# Possible values: any positive integer that is less than or equal to the value specified for max_width
+chain_width = 10

@@ -1,0 +1,11 @@
+[package]
+name = "some_examples"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+publish = false
+
+[dev-dependencies]
+zench.workspace = true

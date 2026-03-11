@@ -33,13 +33,13 @@ mod tests {
 
     use super::extend::IStability;
     use zench::dev::mock;
+    use zench::issue;
     use zench::Bench;
 
     #[test]
     fn test_system_stability() {
         let mut b = Bench::new();
-
-        let mut list: Vec<String> = vec![String::from("")];
+        let mut list: Vec<String> = vec![String::new()];
 
         for _ in 1..=10 {
             b.bench("cpu_work", || {
@@ -49,6 +49,9 @@ mod tests {
             b.report(|r| {
                 let stability = r.system_stability();
                 let stb = format!("Stability: {} - {}", stability.value(), stability);
+                if stability.is_unstable() {
+                    issue!("{stb}");
+                }
                 list.push(stb);
             });
         }

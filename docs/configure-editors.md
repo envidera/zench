@@ -3,33 +3,38 @@
 ## [Zed](https://zed.dev)
 
 
-`Application Menu` > `Open Settings File`
+### Global
 
-or
+Use the application menu:
+`Application Menu` > `Open Settings File` or edit the global settings file directly `~./config/zed/settings.json`  
 
-~./config/zed/settings.json file
+### Local
+
+Edit the local settings file `.zed/settings.json`
 
 ```json
 {
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
-        "check": {
-          "command": "clippy", 
+        "check": {        
+          "command": "clippy", // default: "check"
         },
         "runnables": {
           "extraArgs": ["--release"],
           // extraEnv does not work properly
           // "extraEnv": {
-          //   "ZENCH": "warn",
+          //  "ZENCH": "panic",
           // },
         },
       },
     },
   },
+
+  // temporarily use in the terminal
   "terminal": {
     "env": {
-      "ZENCH": "warn",
+      "ZENCH": "warn", // or panic
     },
   },
 }
@@ -37,7 +42,9 @@ or
 
 ## [VSCode](https://code.visualstudio.com/)
 
-Put in in your .vscode/settings.json file
+### Local
+
+Edit the local settings file `.vscode/settings.json`
 
 ```json
 {
@@ -46,7 +53,7 @@ Put in in your .vscode/settings.json file
         "--release"
     ],
     "rust-analyzer.runnables.extraEnv": {
-        "ZENCH": "warn"
+        "ZENCH": "warn" // or panic
     },
 }
 ```

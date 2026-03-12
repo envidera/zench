@@ -1,4 +1,6 @@
-# Zench - Performance testing with programmable results 
+# Zench
+
+**Performance testing with programmable results**
 
 Turn benchmarks into actionable data, run them inside your `cargo test` pipeline, and act on the results.
 

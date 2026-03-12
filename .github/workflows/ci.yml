@@ -11,7 +11,7 @@ on:
       - ".github/workflows/**"
 
   pull_request:
-    branches: [dev, main, master]
+    branches: [main, master]
     paths:
       - "zench/**"
       - "zench_examples/**"

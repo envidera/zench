@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - "zench/**"
+      - "zench_examples/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/**"
+
+  pull_request:
+    branches: [dev, main, master]
+    paths:
+      - "zench/**"
+      - "zench_examples/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/**"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  multi_os_ci:
+    strategy:
+      matrix:
+        # ---------------------------------
+        # ubuntu-latest, windows-latest, macos-latest
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Rust manual
+        run: rustup update && rustup component add clippy
+
+      - name: Make
+        run: make

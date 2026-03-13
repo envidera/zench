@@ -1,4 +1,4 @@
-# Performance testing with programmable results
+# Programmable benchmarks for Rust tests
 
 [![GitHub](https://img.shields.io/badge/github-envidera%2Fzench-grey.svg?style=flat&logo=github)](https://github.com/envidera/zench)
 [![CI](https://github.com/envidera/zench/actions/workflows/ci.yml/badge.svg)](https://github.com/envidera/zench/actions)
@@ -15,7 +15,7 @@ Zench is a lightweight benchmark library for Rust that works anywhere in your co
 - **Cargo-native** - runs with `cargo test` and `cargo bench`.
 - **Auto-scaling measurement** - benchmark from nanoseconds, to several seconds
 - **Configurable** - fine-tune to your project's specific needs.
-- **Programmable results** - filter, inspect, and react to benchmark data in code
+- **Programmable benchmarks** - filter, inspect, and react to benchmark data in code
 - **Performance Assertions** - warn or fail when performance expectations are not met
 - **Zero dependencies** - pure Rust standard library.
 - **Stable Rust** -  no nightly required.  
@@ -30,7 +30,7 @@ or
 
 ```toml
 [dev-dependencies]
-zench = "0.1.2"
+zench = "0.1.3"
 ```
 
 ## Example
@@ -181,7 +181,7 @@ Samples    Count: 100 <<--- here
 
 [source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_02.rs)
 
-### 3. Report Filtering
+### 3. Benchmark Filtering
 
 Fine-tune how benchmark results are processed. Focus on the data that matters by sorting or limiting results.
 
@@ -242,7 +242,7 @@ cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
 ```
 
 
-### 4. Programmable Reports
+### 4. Programmable Benchmarks
 
 Fine-tune how benchmarks can trigger custom logic, and warn or fail tests when performance expectations are not met.
 

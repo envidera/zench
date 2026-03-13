@@ -1,8 +1,6 @@
-# Zench
+# Performance testing with programmable results
 
-**Performance testing with programmable results**
-
-Turn benchmarks into actionable data, run them inside your `cargo test` pipeline, and act on the results.
+Zench is a lightweight Rust benchmark library that works anywhere in your codebase: `src/`, `tests/`, `examples/`, or `benches/`. Run performance tests with `cargo test`, then filter, assert, and react to benchmark results directly in code.
 
 
 [![GitHub](https://img.shields.io/badge/github-envidera%2Fzench-grey.svg?style=flat&logo=github)](https://github.com/envidera/zench)

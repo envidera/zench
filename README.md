@@ -87,7 +87,7 @@ cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
 2026-03-08 20:17:48 UTC
 ```
 
-[source](zench_examples/readme_examples/examples/ex_00.rs)
+[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_00.rs)
 
 You can also test many cases at once
 
@@ -101,8 +101,7 @@ fn bench_fibs() {
     );
 }
 ```
-[source](zench_examples/readme_examples/examples/ex_00b.rs)
-
+[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_00b.rs)
 
 ## Advanced Usage
 
@@ -131,7 +130,7 @@ fn bench_fibs() {
     });
 }
 ```
-[source](zench_examples/readme_examples/examples/ex_01.rs)
+[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_01.rs)
 
 ### 2. Custom Engine Builder
 
@@ -180,7 +179,7 @@ Stability  Std.Dev: ± 0.037µs | CV: 0.26%
 Samples    Count: 100 <<--- here
 ```
 
-[source](zench_examples/readme_examples/examples/ex_02.rs)
+[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_02.rs)
 
 ### 3. Report Filtering
 
@@ -210,7 +209,8 @@ fn bench_fibs() {
     });
 }
 ```
-[source](zench_examples/readme_examples/examples/ex_03.rs)
+
+[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_03.rs)
 
 The output will look like this:
 
@@ -415,13 +415,12 @@ bench::issue::panic the iterator is no longer the fastest
 --> zench_examples/readme_examples/examples/ex_04.rs:77:17
 ``` 
 
-[source](zench_examples/readme_examples/examples/ex_04.rs)
+[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_04.rs)
 
 
 ### 5. More examples
 
-See [zench_examples/](zench_examples) for a variety of examples.
-
+See [zench_examples/](https://github.com/envidera/zench/blob/main/zench_examples) for a variety of examples.
 
 
 ## Running benchmarks
@@ -470,8 +469,7 @@ cargo bench
 
 ### Run in editor
 
-Run benchmarks directly from your editor by clicking `▶ Run Test`. See the [pre-configured setups](docs/configure-editors.md).
-
+Run benchmarks directly from your editor by clicking `▶ Run Test`. See the [pre-configured setups](https://github.com/envidera/zench/blob/main/docs/configure-editors.md).
 
 ### Run in CI
 With a custom .github/workflows action

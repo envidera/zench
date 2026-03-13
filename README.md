@@ -5,7 +5,7 @@
 [![Documentation](https://docs.rs/zench/badge.svg)](https://docs.rs/zench)
 [![Latest version](https://img.shields.io/crates/v/zench.svg)](https://crates.io/crates/zench)
 [![Minimum Rust Version](https://img.shields.io/badge/rust-1.87.0%2B-blue.svg?maxAge=3600)](https://www.rust-lang.org/)
-![Rust Stable](https://img.shields.io/badge/rust-stable-blue.svg)
+
 
 Zench is a lightweight benchmark library for Rust that works anywhere in your codebase. Run performance tests with `cargo test`, then filter, assert, and react to benchmark results directly in code.
 
@@ -30,7 +30,7 @@ or
 
 ```toml
 [dev-dependencies]
-zench = "0.1.1"
+zench = "0.1.2"
 ```
 
 ## Example

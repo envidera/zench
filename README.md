@@ -7,8 +7,7 @@
 [![Minimum Rust Version](https://img.shields.io/badge/rust-1.87.0%2B-blue.svg?maxAge=3600)](https://www.rust-lang.org/)
 ![Rust Stable](https://img.shields.io/badge/rust-stable-blue.svg)
 
-
-Zench is a lightweight Rust benchmark library that works anywhere in your codebase: `src/`, `tests/`, `examples/`, or `benches/`. Run performance tests with `cargo test`, then filter, assert, and react to benchmark results directly in code.
+Zench is a lightweight benchmark library for Rust that works anywhere in your codebase. Run performance tests with `cargo test`, then filter, assert, and react to benchmark results directly in code.
 
 ## Features
 - **Benchmark everywhere** - in `src/`, `tests/`, `examples/`, `benches/`

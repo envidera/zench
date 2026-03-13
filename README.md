@@ -1,22 +1,25 @@
-![header](https://raw.githubusercontent.com/envidera/zench/main/design/export/header.min.png)
+# Performance testing with programmable results
 
-# Zench
-
-Zench is a lightweight benchmarking library for Rust, designed for seamless workflow integration, speed, and productivity. Run benchmarks anywhere in your codebase and integrate performance checks directly into your `cargo test` pipeline.
+Zench is a lightweight Rust benchmark library that works anywhere in your codebase: `src/`, `tests/`, `examples/`, or `benches/`. Run performance tests with `cargo test`, then filter, assert, and react to benchmark results directly in code.
 
 
-![Rust Stable](https://img.shields.io/badge/rust-stable-brightgreen.svg)
+[![GitHub](https://img.shields.io/badge/github-envidera%2Fzench-grey.svg?style=flat&logo=github)](https://github.com/envidera/zench)
+[![CI](https://github.com/envidera/zench/actions/workflows/ci.yml/badge.svg)](https://github.com/envidera/zench/actions)
+[![Documentation](https://docs.rs/zench/badge.svg)](https://docs.rs/zench)
+[![Latest version](https://img.shields.io/crates/v/zench.svg)](https://crates.io/crates/zench)
+[![Minimum Rust Version](https://img.shields.io/badge/rust-1.87.0%2B-blue.svg?maxAge=3600)](https://www.rust-lang.org/)
+![Rust Stable](https://img.shields.io/badge/rust-stable-blue.svg)
 
 ## Features
 - **Benchmark everywhere** - in `src/`, `tests/`, `examples/`, `benches/`
 - **Benchmark private functions** - directly inside unit tests
-- **Cargo-native workflow** - works with cargo `test` and `bench`.
-- **Automatic measurement strategy** - benchmark from nanoseconds, to several seconds
+- **Cargo-native** - runs with `cargo test` and `cargo bench`.
+- **Auto-scaling measurement** - benchmark from nanoseconds, to several seconds
 - **Configurable** - fine-tune to your project's specific needs.
-- **Programmable reporting** - Filter, inspect, and trigger custom code logic on benchmark results.
-- **Performance Assertions** - warn or fail tests when performance expectations are not met
-- **No external dependencies** - uses only Rust’s standard library.
-- **No Nightly** - works on `stable Rust`.  
+- **Programmable results** - filter, inspect, and react to benchmark data in code
+- **Performance Assertions** - warn or fail when performance expectations are not met
+- **Zero dependencies** - pure Rust standard library.
+- **Stable Rust** -  no nightly required.  
 
 
 ## Install
@@ -28,7 +31,7 @@ or
 
 ```toml
 [dev-dependencies]
-zench = "0.1.0"
+zench = "0.1.1"
 ```
 
 ## Example

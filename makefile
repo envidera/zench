@@ -1,7 +1,5 @@
 all: check test clippy
 
-github: check clippy
-
 print:
 	@echo from makefile!!!
 

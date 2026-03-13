@@ -308,6 +308,7 @@ fn bench_fastest_version() {
         "fold" => bx(square_fold(bx(&data))),
     )
     .report(|r| {
+        
         // For this benchmark, we consider performance roughly equal
         // when the time difference between implementations is within 10%.
         // Benchmarks within this range are grouped as `faster_group`,
@@ -315,6 +316,7 @@ fn bench_fastest_version() {
         let (mut faster_group, mut slower_group) = r
             .sort_by_median()
             .filter_proximity_pct(10.0)
+            
             // Split the current filtered state from the remaining 
             // benchmarks
             .split();

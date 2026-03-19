@@ -22,3 +22,10 @@ rust-version.workspace = true
 
 [lib]
 name = "zench"
+
+[features]
+
+# to display full use:
+# zench = { version = "x.y.z", features = ["display_vertical"] }
+default = []
+display_vertical = []

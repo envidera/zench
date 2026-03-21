@@ -32,13 +32,13 @@ Then run the benchmark in other terminal:
 mod tests {
 
     use super::extend::IStability;
+    use zench::bench;
     use zench::dev::mock;
     use zench::issue;
-    use zench::Bench;
 
     #[test]
     fn test_system_stability() {
-        let mut b = Bench::new();
+        let mut b = bench!();
         let mut list: Vec<String> = vec![String::new()];
 
         for _ in 1..=10 {

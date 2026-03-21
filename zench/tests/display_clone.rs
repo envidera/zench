@@ -20,13 +20,13 @@ const CASES: &[i32] = &[
 mod test_performance {
 
     use super::*;
+    use zench::bench;
     use zench::bx;
-    use zench::Bench;
 
     #[test]
     #[ignore = "display purpose"]
     fn benchmark_clone() {
-        let mut b = Bench::new();
+        let mut b = bench!();
 
         for &size in CASES {
             let original: Vec<u8> = (0..size)

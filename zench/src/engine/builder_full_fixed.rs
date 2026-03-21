@@ -50,7 +50,6 @@ impl BuilderFullFixed {
 mod tests {
 
     use crate::builder::EngineFullFixed;
-    use crate::Bench;
 
     #[test]
     fn test_full_fixed() {

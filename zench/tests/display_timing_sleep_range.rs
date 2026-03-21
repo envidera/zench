@@ -1,7 +1,7 @@
 // Measuring sleep across a wide range of durations
 
 use std::time::Duration;
-use zench::Bench;
+use zench::bench;
 
 struct Test {
     name: &'static str,

@@ -329,7 +329,6 @@ mod tests {
 
     use crate::benchmark::Sort;
     use crate::bx;
-    use crate::Bench;
 
     #[test]
     fn test_split() {

@@ -1,5 +1,4 @@
 use crate::global::Ignore;
-use crate::Bench;
 
 impl<E> Drop for Bench<E> {
     fn drop(&mut self) {

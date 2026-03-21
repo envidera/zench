@@ -316,11 +316,4 @@ iqrz outliers:1999
 iqr outliers:9999
 Modified Z Score outliers:340000
 
-total time: 6.348350763 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-25 13:29:46 UTC
-
 */

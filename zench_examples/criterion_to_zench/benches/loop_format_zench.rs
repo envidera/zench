@@ -1,11 +1,11 @@
 // How to run:
 // cargo bench --package criterion_to_zench --bench loop_format_zench
 
+use zench::bench;
 use zench::bx;
-use zench::Bench;
 
 fn main() {
-    let mut b = Bench::new();
+    let mut b = bench!();
     let argument = bx("world");
 
     for i in 0..5 {

@@ -1,12 +1,12 @@
 // How to run:
 // cargo bench --package criterion_to_zench --bench fibonacci_zench
 
+use zench::bench;
 use zench::bx;
 use zench::dev::fibonacci;
-use zench::Bench;
 
 fn main() {
-    let mut b = Bench::new();
+    let mut b = bench!();
 
     for i in [20, 21].iter() {
         b.bench(format!("Slow {}", i), || {

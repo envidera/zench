@@ -90,7 +90,6 @@ impl BuilderAuto {
 mod tests {
 
     use crate::builder::EngineAuto;
-    use crate::Bench;
     use std::time::Duration;
 
     #[ignore = "display purpose"]

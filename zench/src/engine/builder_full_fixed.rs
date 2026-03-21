@@ -49,6 +49,7 @@ impl BuilderFullFixed {
 #[cfg(test)]
 mod tests {
 
+    use crate::bench::Bench;
     use crate::builder::EngineFullFixed;
 
     #[test]

@@ -327,6 +327,7 @@ impl<'a> IntoIterator for &'a Report {
 #[cfg(test)]
 mod tests {
 
+    use crate::bench::Bench;
     use crate::benchmark::Sort;
     use crate::bx;
 

@@ -89,6 +89,7 @@ impl BuilderAuto {
 #[cfg(test)]
 mod tests {
 
+    use crate::bench::Bench;
     use crate::builder::EngineAuto;
     use std::time::Duration;
 

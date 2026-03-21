@@ -3,7 +3,7 @@ macro_rules! bench {
     // ----------------------------------------------------------------
     // Arm for blocks { ... }
     ( $( $name:expr => { $($block:tt)* } ),+ $(,)? ) => {{
-        let mut b = $crate::Bench::new();
+        let mut b = $crate::builder::Bench::new();
         $(
             b.bench($name, ||
                 $crate::bx({
@@ -17,7 +17,7 @@ macro_rules! bench {
     // ----------------------------------------------------------------
     // Arm for simple expressions
     ( $( $name:expr => $expr:expr ),+ $(,)? ) => {{
-        let mut b = $crate::Bench::new();
+        let mut b = $crate::builder::Bench::new();
         $(
               b.bench($name, || { $crate::bx($expr); });
         )+

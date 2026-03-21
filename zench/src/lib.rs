@@ -38,6 +38,7 @@ pub mod __internal {
     pub use crate::fprintln;
     pub use crate::global::Command;
     //pub use crate::global::Ignore;
+    pub use crate::bench::Bench;
     pub use crate::report::color;
 }
 
@@ -79,14 +80,12 @@ pub mod dev {
 // user
 
 pub use crate::engine::bx;
-pub use bench::Bench;
-pub use report::Report;
 
 pub mod builder {
-
+    pub use crate::bench::Bench;
     pub use crate::engine::EngineAuto;
     pub use crate::engine::EngineFixedSamples;
     pub use crate::engine::EngineFullFixed;
-
+    pub use crate::report::Report;
     pub use crate::warmup::Warmup;
 }

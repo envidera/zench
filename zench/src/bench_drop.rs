@@ -1,3 +1,4 @@
+use crate::bench::Bench;
 use crate::global::Ignore;
 
 impl<E> Drop for Bench<E> {

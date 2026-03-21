@@ -70,6 +70,7 @@ mod tests {
 
     use std::time::Duration;
 
+    use crate::bench::Bench;
     use crate::builder::EngineFixedSamples;
 
     #[ignore = "display purpose"]

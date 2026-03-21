@@ -111,6 +111,7 @@ mod tests {
 mod test_performance {
 
     use super::*;
+    use crate::bench::Bench;
     use crate::bx;
 
     #[ignore = "display purpose"]

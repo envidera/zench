@@ -272,138 +272,46 @@ mod test_performance {
 /*
 RESULT:
 
-Algorithm           Sensitivity   Detection Logic          Performance (AMD Ryzen 5 5600GT)
----------------------------------------------------------------------------------------------
-IQR,                Balanced,     Positional (Quartiles),  Fastest (~67µs)
-IQR-Z,              Low (Safe),   Quartile + 1% Floor,     Optimized (~68µs)
-Modified Z-Score,   High,         Distance-based (MAD),    Slowest (~83µs)
+Algorithm           Sensitivity   Detection Logic
+-----------------------------------------------------------
+IQR,                Balanced,     Positional (Quartiles),
+IQR-Z,              Low (Safe),   Quartile + 1% Floor,
+Modified Z-Score,   High,         Distance-based (MAD),
 */
 
 /*
-
-Report     Samples:5000
-Filters    Sort Median
-
-Benchmark  irq
-Time       Median: 67.408µs
-Stability  Std.Dev: ± 0.232µs | CV: 0.34%
-Samples    Count: 29 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  iqrz
-Time       Median: 68.361µs
-Stability  Std.Dev: ± 0.351µs | CV: 0.51%
-Samples    Count: 29 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  Modified Z Score
-Time       Median: 83.810µs
-Stability  Std.Dev: ± 0.052µs | CV: 0.06%
-Samples    Count: 24 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-iqrz outliers:9
-iqr outliers:49
-Modified Z Score outliers:1700
-
-total time: 6.661789124 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-25 13:29:27 UTC
-
-bench ...
-
-Report     Samples:100000
-Filters    Sort Median
-
-Benchmark  irq
-Time       Median: 2.256ms
-Stability  Std.Dev: ± 0.007ms | CV: 0.31%
-Samples    Count: 28 | Iters/sample: 32 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  iqrz
-Time       Median: 2.271ms
-Stability  Std.Dev: ± 0.005ms | CV: 0.22%
-Samples    Count: 28 | Iters/sample: 32 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  Modified Z Score
-Time       Median: 2.574ms
-Stability  Std.Dev: ± 0.010ms | CV: 0.39%
-Samples    Count: 25 | Iters/sample: 32 | Outliers: 4.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
+Samples:100000 > Sort Median
+─────────────────┬─────────┬───────┬────────────┬──────────┬──────────────
+      name       │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────┼─────────┼───────┼────────────┼──────────┼──────────────
+iqrz             │ 2.240ms │ 0.30% │  ± 0.007ms │    0.00% │       7 / 128
+irq              │ 2.266ms │ 0.24% │  ± 0.005ms │    0.00% │       7 / 128
+Modified Z Score │ 2.503ms │ 0.18% │  ± 0.005ms │    0.00% │       13 / 64
+─────────────────┴─────────┴───────┴────────────┴──────────┴──────────────
 iqrz outliers:199
 iqr outliers:999
 Modified Z Score outliers:34000
 
-total time: 6.592255226 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-25 13:29:34 UTC
-
-bench ...
-
-Report     Samples:500000
-Filters    Sort Median
-
-Benchmark  irq
-Time       Median: 12.933ms
-Stability  Std.Dev: ± 0.079ms | CV: 0.61%
-Samples    Count: 39 | Iters/sample: 4 | Outliers: 5.13%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  iqrz
-Time       Median: 13.095ms
-Stability  Std.Dev: ± 0.093ms | CV: 0.71%
-Samples    Count: 39 | Iters/sample: 4 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  Modified Z Score
-Time       Median: 14.299ms
-Stability  Std.Dev: ± 0.067ms | CV: 0.47%
-Samples    Count: 35 | Iters/sample: 4 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
+Samples:500000 > Sort Median
+─────────────────┬──────────┬───────┬────────────┬──────────┬──────────────
+      name       │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────┼──────────┼───────┼────────────┼──────────┼──────────────
+iqrz             │ 12.835ms │ 1.14% │  ± 0.146ms │    0.00% │       10 / 16
+irq              │ 12.858ms │ 0.46% │  ± 0.059ms │   20.00% │       10 / 16
+Modified Z Score │ 14.145ms │ 0.69% │  ± 0.097ms │    0.00% │        9 / 16
+─────────────────┴──────────┴───────┴────────────┴──────────┴──────────────
 iqrz outliers:999
 iqr outliers:4999
 Modified Z Score outliers:170000
 
-total time: 6.380448077 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-25 13:29:40 UTC
-
-bench ...
-
-Report     Samples:1000000
-Filters    Sort Median
-
-Benchmark  irq
-Time       Median: 27.761ms
-Stability  Std.Dev: ± 0.228ms | CV: 0.82%
-Samples    Count: 36 | Iters/sample: 2 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  iqrz
-Time       Median: 28.059ms
-Stability  Std.Dev: ± 0.154ms | CV: 0.55%
-Samples    Count: 36 | Iters/sample: 2 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
-Benchmark  Modified Z Score
-Time       Median: 30.749ms
-Stability  Std.Dev: ± 0.117ms | CV: 0.38%
-Samples    Count: 33 | Iters/sample: 2 | Outliers: 0.00%
-Location   zench/src/benchmark/outlier.rs:252:13
-
+Samples:1000000 > Sort Median
+─────────────────┬──────────┬───────┬────────────┬──────────┬──────────────
+      name       │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────┼──────────┼───────┼────────────┼──────────┼──────────────
+iqrz             │ 27.379ms │ 1.34% │  ± 0.369ms │    0.00% │        10 / 8
+irq              │ 27.642ms │ 0.87% │  ± 0.240ms │   10.00% │        10 / 8
+Modified Z Score │ 29.886ms │ 1.28% │  ± 0.384ms │    0.00% │         9 / 8
+─────────────────┴──────────┴───────┴────────────┴──────────┴──────────────
 iqrz outliers:1999
 iqr outliers:9999
 Modified Z Score outliers:340000

@@ -123,150 +123,48 @@ mod tests {
 
 /*
 
-Report
-
-Benchmark  10
-Time       Median: 0.230ns
-Stability  Std.Dev: ± 0.030ns | CV: 12.51%
-Samples    Count: 10 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/engine/builder_fixed.rs:61:15
-
-
-
-Report
-
-Benchmark  10
-Time       Median: 0.230ns
-Stability  Std.Dev: ± 0.030ns | CV: 12.51%
-Samples    Count: 10 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/engine/builder_fixed.rs:61:15
+─────┬─────────┬───────┬────────────┬──────────┬──────────────
+name │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼──────────────
+10   │ 0.215ns │ 0.01% │  ± 0.000ns │   10.00% │  10 / 524,288
+─────┴─────────┴───────┴────────────┴──────────┴──────────────
+total time: 0.002801945 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-total time: 0.003118824 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 00:38:53 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_fixed.rs:61:15::50
-
-Report
-
-Benchmark  50
-Time       Median: 0.216ns
-Stability  Std.Dev: ± 0.025ns | CV: 10.70%
-Samples    Count: 50 | Iters/sample: 524,288 | Outliers: 4.00%
-Location   zench/src/engine/builder_fixed.rs:61:15
+─────┬─────────┬───────┬────────────┬──────────┬──────────────
+name │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼──────────────
+50   │ 0.215ns │ 0.01% │  ± 0.000ns │   14.00% │  50 / 524,288
+─────┴─────────┴───────┴────────────┴──────────┴──────────────
+total time: 0.01186671 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-
-Report
-
-Benchmark  50
-Time       Median: 0.216ns
-Stability  Std.Dev: ± 0.025ns | CV: 10.70%
-Samples    Count: 50 | Iters/sample: 524,288 | Outliers: 4.00%
-Location   zench/src/engine/builder_fixed.rs:61:15
-
-
-total time: 0.012761632 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 00:38:53 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_fixed.rs:61:15::100
-
-Report
-
-Benchmark  100
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.17%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 21.00%
-Location   zench/src/engine/builder_fixed.rs:61:15
+─────┬─────────┬───────┬────────────┬──────────┬──────────────
+name │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼──────────────
+100  │ 0.215ns │ 0.01% │  ± 0.000ns │   11.00% │ 100 / 524,288
+─────┴─────────┴───────┴────────────┴──────────┴──────────────
+total time: 0.023260987 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-
-Report
-
-Benchmark  100
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.17%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 21.00%
-Location   zench/src/engine/builder_fixed.rs:61:15
-
-
-total time: 0.023478104 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 00:38:53 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_fixed.rs:61:15::500
-
-Report
-
-Benchmark  500
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.07%
-Samples    Count: 500 | Iters/sample: 524,288 | Outliers: 17.40%
-Location   zench/src/engine/builder_fixed.rs:61:15
+─────┬─────────┬───────┬────────────┬──────────┬──────────────
+name │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼──────────────
+500  │ 0.215ns │ 0.01% │  ± 0.000ns │   13.20% │ 500 / 524,288
+─────┴─────────┴───────┴────────────┴──────────┴──────────────
+total time: 0.114491796 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-
-Report
-
-Benchmark  500
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.07%
-Samples    Count: 500 | Iters/sample: 524,288 | Outliers: 17.40%
-Location   zench/src/engine/builder_fixed.rs:61:15
-
-
-total time: 0.115554131 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 00:38:53 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_fixed.rs:61:15::1000
-
-Report
-
-Benchmark  1000
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.05%
-Samples    Count: 1,000 | Iters/sample: 524,288 | Outliers: 16.60%
-Location   zench/src/engine/builder_fixed.rs:61:15
-
-
-
-Report
-
-Benchmark  1000
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.05%
-Samples    Count: 1,000 | Iters/sample: 524,288 | Outliers: 16.60%
-Location   zench/src/engine/builder_fixed.rs:61:15
-
-
-total time: 0.229771044 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 00:38:53 UTC
+─────┬─────────┬───────┬────────────┬──────────┬────────────────
+name │ median  │  cv   │  std.dev   │ outliers │  samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼────────────────
+1000 │ 0.215ns │ 0.01% │  ± 0.000ns │   11.50% │ 1,000 / 524,288
+─────┴─────────┴───────┴────────────┴──────────┴────────────────
+total time: 0.227757121 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 */

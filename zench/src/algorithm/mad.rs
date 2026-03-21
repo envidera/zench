@@ -309,108 +309,38 @@ mod test_performance {
 
 /*
 
-Report     fast group
-Filters    Sort Median > Filter Proximity(5%)
+fast group > Sort Median > Filter Proximity(5%)
+─────────────┬────────────┬───────┬─────────────┬──────────┬──────────────
+    name     │   median   │  cv   │   std.dev   │ outliers │ samples/iters
+─────────────┼────────────┼───────┼─────────────┼──────────┼──────────────
+[faster] v3c │  145.208µs │ 0.21% │   ± 0.308µs │    0.00% │     7 / 2,048
+[faster] v2c │  146.017µs │ 0.10% │   ± 0.142µs │    0.00% │     7 / 2,048
+─────────────┴────────────┴───────┴─────────────┴──────────┴──────────────
 
-Benchmark  [faster] v3c
-Time       Median: 145.099µs
-Stability  Std.Dev: ± 0.413µs | CV: 0.28%
-Samples    Count: 53 | Iters/sample: 256 | Outliers: 1.89%
-Location   zench/src/algorithm/mad.rs:254:9
+slow 1 > Filter Proximity(10%)
+─────────────┬────────────┬───────┬─────────────┬──────────┬──────────────
+    name     │   median   │  cv   │   std.dev   │ outliers │ samples/iters
+─────────────┼────────────┼───────┼─────────────┼──────────┼──────────────
+mad_in_place │  211.112µs │ 0.33% │   ± 0.697µs │    0.00% │    10 / 1,024
+v2a          │  212.548µs │ 0.26% │   ± 0.546µs │    0.00% │    10 / 1,024
+v3a          │  212.956µs │ 0.21% │   ± 0.448µs │    0.00% │    10 / 1,024
+─────────────┴────────────┴───────┴─────────────┴──────────┴──────────────
 
-Benchmark  [faster] v2c
-Time       Median: 145.828µs
-Stability  Std.Dev: ± 0.792µs | CV: 0.54%
-Samples    Count: 53 | Iters/sample: 256 | Outliers: 1.89%
-Location   zench/src/algorithm/mad.rs:254:9
-
-
-
-Report     slow 1
-Filters    Filter Proximity(10%)
-
-Benchmark  mad_in_place
-Time       Median: 203.620µs
-Stability  Std.Dev: ± 0.531µs | CV: 0.26%
-Samples    Count: 39 | Iters/sample: 256 | Outliers: 2.56%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v3a
-Time       Median: 213.248µs
-Stability  Std.Dev: ± 0.488µs | CV: 0.23%
-Samples    Count: 37 | Iters/sample: 256 | Outliers: 2.70%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v2a
-Time       Median: 213.466µs
-Stability  Std.Dev: ± 0.249µs | CV: 0.12%
-Samples    Count: 37 | Iters/sample: 256 | Outliers: 2.70%
-Location   zench/src/algorithm/mad.rs:254:9
-
-
-
-Report     slow 2
-
-Benchmark  v1c
-Time       Median: 265.389µs
-Stability  Std.Dev: ± 10.311µs | CV: 3.93%
-Samples    Count: 31 | Iters/sample: 256 | Outliers: 9.68%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v1a
-Time       Median: 307.342µs
-Stability  Std.Dev: ± 3.787µs | CV: 1.23%
-Samples    Count: 26 | Iters/sample: 256 | Outliers: 0.00%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v1b
-Time       Median: 312.190µs
-Stability  Std.Dev: ± 1.439µs | CV: 0.46%
-Samples    Count: 25 | Iters/sample: 256 | Outliers: 12.00%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v1a
-Time       Median: 312.891µs
-Stability  Std.Dev: ± 1.469µs | CV: 0.47%
-Samples    Count: 25 | Iters/sample: 256 | Outliers: 4.00%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v2b
-Time       Median: 374.180µs
-Stability  Std.Dev: ± 0.419µs | CV: 0.11%
-Samples    Count: 41 | Iters/sample: 128 | Outliers: 7.32%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v3b
-Time       Median: 374.352µs
-Stability  Std.Dev: ± 0.420µs | CV: 0.11%
-Samples    Count: 41 | Iters/sample: 128 | Outliers: 7.32%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v3d
-Time       Median: 441.600µs
-Stability  Std.Dev: ± 0.671µs | CV: 0.15%
-Samples    Count: 35 | Iters/sample: 128 | Outliers: 8.57%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v2d
-Time       Median: 442.411µs
-Stability  Std.Dev: ± 0.477µs | CV: 0.11%
-Samples    Count: 35 | Iters/sample: 128 | Outliers: 8.57%
-Location   zench/src/algorithm/mad.rs:254:9
-
-Benchmark  v1d
-Time       Median: 2.351ms
-Stability  Std.Dev: ± 0.005ms | CV: 0.20%
-Samples    Count: 27 | Iters/sample: 32 | Outliers: 0.00%
-Location   zench/src/algorithm/mad.rs:254:9
-
-
-total time: unknown sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 10:30:58 UTC
+slow 2
+─────┬────────────┬───────┬──────────────┬──────────┬──────────────
+name │   median   │  cv   │   std.dev    │ outliers │ samples/iters
+─────┼────────────┼───────┼──────────────┼──────────┼──────────────
+v1c  │  249.046µs │ 7.72% │   ± 19.059µs │    0.00% │     8 / 1,024
+v1a  │  306.535µs │ 1.26% │    ± 3.862µs │    0.00% │      13 / 512
+v1a  │  313.268µs │ 0.53% │    ± 1.662µs │   15.38% │      13 / 512
+v1b  │  320.626µs │ 0.52% │    ± 1.663µs │    0.00% │      13 / 512
+v3b  │  374.843µs │ 0.10% │    ± 0.392µs │    0.00% │      11 / 512
+v2b  │  375.033µs │ 0.14% │    ± 0.522µs │    0.00% │      11 / 512
+v2d  │  442.399µs │ 0.16% │    ± 0.688µs │    0.00% │       9 / 512
+v3d  │  442.557µs │ 0.27% │    ± 1.203µs │    0.00% │       9 / 512
+v1d  │    2.375ms │ 0.23% │    ± 0.006ms │    0.00% │       14 / 64
+─────┴────────────┴───────┴──────────────┴──────────┴──────────────
+total time: 36.516340552 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 */

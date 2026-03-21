@@ -95,7 +95,7 @@ pub(crate) const CASES: &[Test] = &[
 #[ignore = "display purpose"]
 #[test]
 fn timing_range() {
-    let mut b = Bench::new();
+    let mut b = bench!();
 
     for t in CASES {
         b.bench(t.name, || {

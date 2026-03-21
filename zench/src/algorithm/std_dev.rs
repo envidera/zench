@@ -219,33 +219,15 @@ mod test_performance {
 
 /*
 
-Report
-Filters    Sort Median
-
-Benchmark  [faster] v3
-Time       Median: 16.430µs
-Stability  Std.Dev: ± 0.065µs | CV: 0.39%
-Samples    Count: 30 | Iters/sample: 4,096 | Outliers: 0.00%
-Location   zench/src/algorithm/std_dev.rs:198:9
-
-Benchmark  v1
-Time       Median: 65.464µs
-Stability  Std.Dev: ± 0.192µs | CV: 0.29%
-Samples    Count: 30 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench/src/algorithm/std_dev.rs:198:9
-
-Benchmark  v2
-Time       Median: 65.548µs
-Stability  Std.Dev: ± 0.139µs | CV: 0.21%
-Samples    Count: 30 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench/src/algorithm/std_dev.rs:198:9
-
-
-total time: 6.458402465 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-07 10:52:05 UTC
+Sort Median
+────────────┬───────────┬───────┬─────────────┬──────────┬──────────────
+   name     │  median   │  cv   │   std.dev   │ outliers │ samples/iters
+────────────┼───────────┼───────┼─────────────┼──────────┼──────────────
+[faster] v3 │  17.009µs │ 1.57% │   ± 0.267µs │    0.00% │    8 / 16,384
+v1          │  65.568µs │ 0.16% │   ± 0.104µs │    0.00% │     8 / 4,096
+v2          │  65.597µs │ 0.20% │   ± 0.133µs │    0.00% │     8 / 4,096
+────────────┴───────────┴───────┴─────────────┴──────────┴──────────────
+total time: 8.194503232 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 */

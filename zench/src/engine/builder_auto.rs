@@ -148,20 +148,12 @@ mod tests {
 
 /*
 
-Report
-
-Benchmark  empty
-Time       Median: 0.215ns
-Stability  Std.Dev: ± 0.000ns | CV: 0.01%
-Samples    Count: 1,001 | Iters/sample: 524,288 | Outliers: 11.79%
-Location   zench/src/engine/builder_auto.rs:135:11
-
-
-total time: 0.228880848 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 18:33:50 UTC
+──────┬─────────┬───────┬────────────┬──────────┬────────────────
+name  │ median  │  cv   │  std.dev   │ outliers │  samples/iters
+──────┼─────────┼───────┼────────────┼──────────┼────────────────
+empty │ 0.215ns │ 0.01% │  ± 0.000ns │   11.59% │ 1,001 / 524,288
+──────┴─────────┴───────┴────────────┴──────────┴────────────────
+total time: 0.229525536 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 */

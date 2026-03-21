@@ -97,100 +97,48 @@ mod tests {
 
 /*
 
-Report
-
-Benchmark  10
-Time       Median: 3.000ns
-Stability  Std.Dev: ± 0.499ns | CV: 19.11%
-Samples    Count: 10 | Iters/sample: 10 | Outliers: 0.00%
-Location   zench/src/engine/builder_full_fixed.rs:83:15
-
-
-total time: 0.000039243 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 18:29:26 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_full_fixed.rs:83:15::50
-
-Report
-
-Benchmark  50
-Time       Median: 0.800ns
-Stability  Std.Dev: ± 0.088ns | CV: 11.70%
-Samples    Count: 50 | Iters/sample: 50 | Outliers: 0.00%
-Location   zench/src/engine/builder_full_fixed.rs:83:15
+─────┬─────────┬────────┬────────────┬──────────┬──────────────
+name │ median  │   cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼────────┼────────────┼──────────┼──────────────
+10   │ 3.000ns │ 19.11% │  ± 0.499ns │    0.00% │       10 / 10
+─────┴─────────┴────────┴────────────┴──────────┴──────────────
+total time: 0.000044233 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-total time: 0.000040426 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 18:29:26 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_full_fixed.rs:83:15::100
-
-Report
-
-Benchmark  100
-Time       Median: 0.500ns
-Stability  Std.Dev: ± 0.047ns | CV: 10.16%
-Samples    Count: 100 | Iters/sample: 100 | Outliers: 0.00%
-Location   zench/src/engine/builder_full_fixed.rs:83:15
+─────┬─────────┬────────┬────────────┬──────────┬──────────────
+name │ median  │   cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼────────┼────────────┼──────────┼──────────────
+50   │ 0.800ns │ 12.53% │  ± 0.094ns │    0.00% │       50 / 50
+─────┴─────────┴────────┴────────────┴──────────┴──────────────
+total time: 0.000039524 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-total time: 0.000045605 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 18:29:26 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_full_fixed.rs:83:15::500
-
-Report
-
-Benchmark  500
-Time       Median: 0.340ns
-Stability  Std.Dev: ± 0.010ns | CV: 2.89%
-Samples    Count: 500 | Iters/sample: 500 | Outliers: 0.00%
-Location   zench/src/engine/builder_full_fixed.rs:83:15
+─────┬─────────┬────────┬────────────┬──────────┬──────────────
+name │ median  │   cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼────────┼────────────┼──────────┼──────────────
+100  │ 0.500ns │ 10.17% │  ± 0.047ns │    0.00% │     100 / 100
+─────┴─────────┴────────┴────────────┴──────────┴──────────────
+total time: 0.000046698 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-total time: 0.000259805 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 18:29:26 UTC
-
----------------------------------
-
-bench zench/src/engine/builder_full_fixed.rs:83:15::1000
-
-Report
-
-Benchmark  1000
-Time       Median: 0.241ns
-Stability  Std.Dev: ± 0.029ns | CV: 11.02%
-Samples    Count: 1,000 | Iters/sample: 1,000 | Outliers: 0.00%
-Location   zench/src/engine/builder_full_fixed.rs:83:15
+─────┬─────────┬───────┬────────────┬──────────┬──────────────
+name │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼──────────────
+500  │ 0.340ns │ 2.78% │  ± 0.009ns │    0.00% │     500 / 500
+─────┴─────────┴───────┴────────────┴──────────┴──────────────
+total time: 0.000260807 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 
-total time: 0.000690739 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 18:29:26 UTC
+─────┬─────────┬───────┬────────────┬──────────┬──────────────
+name │ median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────┼─────────┼───────┼────────────┼──────────┼──────────────
+1000 │ 0.301ns │ 0.17% │  ± 0.000ns │   13.50% │ 1,000 / 1,000
+─────┴─────────┴───────┴────────────┴──────────┴──────────────
+total time: 0.000738159 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 */

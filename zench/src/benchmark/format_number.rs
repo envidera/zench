@@ -129,110 +129,27 @@ mod test_performance {
 
 /*
 
-Report
-
-Benchmark  v1 999
-Time       Median: 23.594ns
-Stability  Std.Dev: ± 0.077ns | CV: 0.33%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 999
-Time       Median: 23.783ns
-Stability  Std.Dev: ± 0.029ns | CV: 0.12%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 999
-Time       Median: 23.781ns
-Stability  Std.Dev: ± 0.036ns | CV: 0.15%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 999
-Time       Median: 23.781ns
-Stability  Std.Dev: ± 0.018ns | CV: 0.08%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000
-Time       Median: 25.177ns
-Stability  Std.Dev: ± 0.055ns | CV: 0.22%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000
-Time       Median: 25.053ns
-Stability  Std.Dev: ± 0.113ns | CV: 0.45%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000
-Time       Median: 25.006ns
-Stability  Std.Dev: ± 0.113ns | CV: 0.45%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000
-Time       Median: 24.996ns
-Stability  Std.Dev: ± 0.071ns | CV: 0.28%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 10000
-Time       Median: 26.192ns
-Stability  Std.Dev: ± 0.123ns | CV: 0.47%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 10000
-Time       Median: 26.213ns
-Stability  Std.Dev: ± 0.069ns | CV: 0.26%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 10000
-Time       Median: 26.229ns
-Stability  Std.Dev: ± 0.049ns | CV: 0.19%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 10000
-Time       Median: 26.217ns
-Stability  Std.Dev: ± 0.052ns | CV: 0.20%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000000
-Time       Median: 29.660ns
-Stability  Std.Dev: ± 0.141ns | CV: 0.47%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000000
-Time       Median: 29.664ns
-Stability  Std.Dev: ± 0.123ns | CV: 0.41%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000000
-Time       Median: 29.652ns
-Stability  Std.Dev: ± 0.110ns | CV: 0.37%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-Benchmark  v1 1000000
-Time       Median: 29.657ns
-Stability  Std.Dev: ± 0.131ns | CV: 0.44%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench/src/benchmark/format_number.rs:120:15
-
-
-total time: 22.523009033 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-03 12:20:47 UTC
+───────────┬──────────┬───────┬────────────┬──────────┬──────────────
+   name    │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+───────────┼──────────┼───────┼────────────┼──────────┼──────────────
+v1 999     │ 23.826ns │ 1.40% │  ± 0.335ns │    0.00% │ 100 / 524,288
+v1 999     │ 23.932ns │ 0.85% │  ± 0.202ns │    0.00% │ 100 / 524,288
+v1 999     │ 23.822ns │ 0.61% │  ± 0.145ns │    3.00% │ 100 / 524,288
+v1 999     │ 23.796ns │ 0.58% │  ± 0.137ns │    3.00% │ 100 / 524,288
+v1 1000    │ 25.187ns │ 0.22% │  ± 0.056ns │    1.00% │ 100 / 524,288
+v1 1000    │ 25.198ns │ 0.28% │  ± 0.071ns │    3.00% │ 100 / 524,288
+v1 1000    │ 25.184ns │ 0.25% │  ± 0.063ns │    2.00% │ 100 / 524,288
+v1 1000    │ 25.270ns │ 0.41% │  ± 0.103ns │    3.00% │ 100 / 524,288
+v1 10000   │ 26.304ns │ 1.07% │  ± 0.282ns │    5.00% │ 100 / 524,288
+v1 10000   │ 26.206ns │ 0.27% │  ± 0.070ns │    2.00% │ 100 / 524,288
+v1 10000   │ 28.067ns │ 0.35% │  ± 0.097ns │    3.00% │ 100 / 524,288
+v1 10000   │ 26.221ns │ 0.31% │  ± 0.081ns │    1.00% │ 100 / 524,288
+v1 1000000 │ 29.623ns │ 0.40% │  ± 0.120ns │    0.00% │ 100 / 524,288
+v1 1000000 │ 29.608ns │ 0.42% │  ± 0.124ns │    0.00% │ 100 / 524,288
+v1 1000000 │ 29.709ns │ 0.41% │  ± 0.122ns │    1.00% │ 100 / 524,288
+v1 1000000 │ 29.755ns │ 0.37% │  ± 0.109ns │    0.00% │ 100 / 524,288
+───────────┴──────────┴───────┴────────────┴──────────┴──────────────
+total time: 22.693040312 sec
+rust: 1.94.0 (release) | zench: 0.1.4
 
 */

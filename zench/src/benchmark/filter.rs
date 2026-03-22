@@ -6,8 +6,9 @@ pub(crate) enum Filter {
     Pct(f64),
 }
 
-#[derive(Debug, Clone, PartialEq, Copy)]
+#[derive(Debug, Clone, PartialEq, Copy, Default)]
 pub enum Sort {
+    #[default]
     Median,
     MedianReverse,
     Samples,

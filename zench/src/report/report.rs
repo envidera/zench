@@ -281,9 +281,7 @@ impl Report {
     fn apply_filter(&mut self, filter: Filter, location: String) {
         let sort = self
             .sorted_by
-            .unwrap_or_else(|| {
-                panic!("Zench - filters must be sorted before being used. \n{location}\n")
-            });
+            .unwrap_or_default();
 
         self.push_modifier(filter.to_string());
 

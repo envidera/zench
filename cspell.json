@@ -21,6 +21,8 @@
     "Xtring",
     "Ztring",
     "benchs",
-    "benchset"
+    "benchset",
+    "stddev",
+    "repr"
   ]
 }

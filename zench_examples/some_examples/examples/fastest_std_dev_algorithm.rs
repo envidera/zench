@@ -89,7 +89,7 @@ mod test_performance {
     use zench::issue;
 
     #[test]
-    fn std_dev_performance() {
+    fn bench_std_dev_performance() {
         let data = dev::mock::generate_data(100_000);
         let mean = dev::algorithm::mean(&data);
 
@@ -117,33 +117,15 @@ mod test_performance {
 
 /*
 
-Report
-Filters    Sort Median
-
-Benchmark  [faster] v3
-Time       Median: 16.547µs
-Stability  Std.Dev: ± 0.042µs | CV: 0.25%
-Samples    Count: 30 | Iters/sample: 4,096 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/fastest_std_dev_algorithm.rs:96:9
-
-Benchmark  v1
-Time       Median: 65.508µs
-Stability  Std.Dev: ± 0.177µs | CV: 0.27%
-Samples    Count: 30 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/fastest_std_dev_algorithm.rs:96:9
-
-Benchmark  v2
-Time       Median: 65.597µs
-Stability  Std.Dev: ± 0.141µs | CV: 0.22%
-Samples    Count: 30 | Iters/sample: 1,024 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/fastest_std_dev_algorithm.rs:96:9
-
-
-total time: 6.475784562 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 19:44:20 UTC
+Sort Median
+────────────┬───────────┬───────┬─────────────┬──────────┬──────────────
+   name     │  median   │  cv   │   std.dev   │ outliers │ samples/iters
+────────────┼───────────┼───────┼─────────────┼──────────┼──────────────
+[faster] v3 │  16.630µs │ 0.18% │   ± 0.029µs │    0.00% │    8 / 16,384
+v2          │  65.682µs │ 0.16% │   ± 0.103µs │    0.00% │     8 / 4,096
+v1          │  65.699µs │ 0.12% │   ± 0.078µs │    0.00% │     8 / 4,096
+────────────┴───────────┴───────┴─────────────┴──────────┴──────────────
+total time: 8.220617702 sec
+rust: 1.94.1 (release) | zench: 0.1.4
 
 */

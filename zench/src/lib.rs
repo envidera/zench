@@ -4,7 +4,7 @@
 //! # Item Details
 //! ## Ready-to-use
 //!
-//! - [`Bench`] or [`bench!`] - for benchmarking
+//! - [`bench!`] - for benchmarking
 //! - [`bx`] - prevents compiler optimizations
 //! - [`issue`] - report unexpected behavior with warn or panic state
 //!
@@ -38,6 +38,7 @@ pub mod __internal {
     pub use crate::fprintln;
     pub use crate::global::Command;
     //pub use crate::global::Ignore;
+    pub use crate::bench::Bench;
     pub use crate::report::color;
 }
 
@@ -79,14 +80,18 @@ pub mod dev {
 // user
 
 pub use crate::engine::bx;
-pub use bench::Bench;
-pub use report::Report;
 
 pub mod builder {
+    pub use crate::report::Report;
 
+    #[doc(hidden)]
+    pub use crate::bench::Bench;
+    #[doc(hidden)]
     pub use crate::engine::EngineAuto;
+    #[doc(hidden)]
     pub use crate::engine::EngineFixedSamples;
+    #[doc(hidden)]
     pub use crate::engine::EngineFullFixed;
-
+    #[doc(hidden)]
     pub use crate::warmup::Warmup;
 }

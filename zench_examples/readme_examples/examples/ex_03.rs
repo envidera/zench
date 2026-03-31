@@ -27,9 +27,17 @@ mod tests {
             "fib 8"  => fibonacci(bx(8)),
         )
         .report(|r| {
-            r.title("Top 2") // Define a title
-                .sort_by_median() // Sort by fastest first
-                .filter_n(2) // Top 2 benchmarks
+            let (mut faster_group, mut slower_group) = r
+                .sort_by_median() // Sort benchmarks by median time
+                .filter_n(2) // Keep the first two results
+                .split();
+
+            faster_group
+                .title("Top 2") // Define a group title
+                .print(); // Print the results
+
+            slower_group
+                .title("Rest")
                 .print();
         });
     }
@@ -37,27 +45,22 @@ mod tests {
 
 /*
 
-Report     Top 2
-Filters    Sort Median > Filter N(2)
+Top 2 > Sort Median > Filter N(2)
+──────┬──────────┬───────┬────────────┬──────────┬──────────────
+name  │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+──────┼──────────┼───────┼────────────┼──────────┼──────────────
+fib 5 │  9.299ns │ 0.58% │  ± 0.054ns │    4.00% │ 100 / 524,288
+fib 8 │ 40.298ns │ 0.39% │  ± 0.157ns │    4.21% │  95 / 524,288
+──────┴──────────┴───────┴────────────┴──────────┴──────────────
 
-Benchmark  fib 5
-Time       Median: 9.294ns
-Stability  Std.Dev: ± 0.019ns | CV: 0.21%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench_examples/readme_examples/examples/ex_03.rs:23:9
-
-Benchmark  fib 8
-Time       Median: 40.243ns
-Stability  Std.Dev: ± 0.110ns | CV: 0.27%
-Samples    Count: 95 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/readme_examples/examples/ex_03.rs:23:9
-
-
-total time: 7.124152612 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-10 10:45:35 UTC
+Rest
+───────┬───────────┬───────┬────────────┬──────────┬──────────────
+ name  │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+───────┼───────────┼───────┼────────────┼──────────┼──────────────
+fib 10 │ 106.412ns │ 0.39% │  ± 0.416ns │   13.89% │  36 / 524,288
+fib 12 │ 279.791ns │ 0.66% │  ± 1.852ns │    0.00% │  14 / 524,288
+───────┴───────────┴───────┴────────────┴──────────┴──────────────
+total time: 7.075344703 sec
+rust: 1.94.1 (release) | zench: 0.1.4
 
 */

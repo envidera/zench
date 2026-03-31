@@ -24,20 +24,18 @@ mod tests {
     use zench::issue;
 
     #[test]
-    fn simple_regression_example() {
+    fn bench_simple_regression_example() {
         bench!(
-                "my func" =>{
-                    sleep(Duration::from_millis(1));
-                },
-
+            "my func" => sleep(Duration::from_millis(1)),
         )
         .report(|r| {
             r.print();
 
-            // Expected baseline time (from Duration::from_millis(1))
-            let baseline = 1_000_000.0;
+            // Expected baseline time
+            let baseline = Duration::from_millis(1).as_nanos() as f64;
             let tolerance = 0.15; // 15%
 
+            // get the first benchmark time (median)
             let median = r
                 .first()
                 .unwrap()

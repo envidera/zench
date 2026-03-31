@@ -4,8 +4,8 @@
 // ================================================================
 
 use std::fmt::Display;
+use zench::builder::Report;
 use zench::dev::algorithm;
-use zench::Report;
 
 #[allow(unused)]
 pub trait IStability {

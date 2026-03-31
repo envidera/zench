@@ -8,7 +8,7 @@ mod tests {
 
     #[ignore = "tmp purpose"]
     #[test]
-    fn test_x() {
+    fn bench_test_x() {
         bench!(
                 "x" =>{},
                 "y" =>{},

@@ -30,31 +30,14 @@ mod tests {
 
 /*
 
-Report
-
-Benchmark  fib 10
-Time       Mean: 114.179ns
-Stability  Std.Dev: ± 0.686ns | CV: 0.60%
-Samples    Count: 34 | Iters/sample: 524,288 | Outliers: 8.82%
-Location   zench/examples/ex_00b.rs:23:9
-
-Benchmark  fib 20
-Time       Mean: 14.298µs
-Stability  Std.Dev: ± 0.013µs | CV: 0.09%
-Samples    Count: 35 | Iters/sample: 4,096 | Outliers: 0.00%
-Location   zench/examples/ex_00b.rs:23:9
-
-Benchmark  fib 30
-Time       Mean: 1.759ms
-Stability  Std.Dev: ± 0.001ms | CV: 0.07%
-Samples    Count: 36 | Iters/sample: 32 | Outliers: 0.00%
-Location   zench/examples/ex_00b.rs:23:9
-
-total time: 6.584406126 sec
-rust: 1.93.0 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12)
-2026-02-19 19:15:10 UTC
+───────┬───────────┬───────┬─────────────┬──────────┬──────────────
+ name  │  median   │  cv   │   std.dev   │ outliers │ samples/iters
+───────┼───────────┼───────┼─────────────┼──────────┼──────────────
+fib 10 │ 106.512ns │ 0.39% │   ± 0.415ns │    0.00% │  36 / 524,288
+fib 20 │  13.398µs │ 0.35% │   ± 0.047µs │    0.00% │   10 / 16,384
+fib 30 │   1.651ms │ 0.41% │   ± 0.007ms │    0.00% │      10 / 128
+───────┴───────────┴───────┴─────────────┴──────────┴──────────────
+total time: 7.41873511 sec
+rust: 1.94.1 (release) | zench: 0.2.x
 
 */

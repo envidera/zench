@@ -10,7 +10,7 @@ mod tests {
     use zench::bench;
 
     #[test]
-    fn test_print() {
+    fn bench_test_print() {
         bench!("print example" => {}).report(|r| {
             r.benchset()
                 .iter()
@@ -38,7 +38,7 @@ mod tests {
     }
 
     #[test]
-    fn test_print_aligned() {
+    fn bench_test_print_aligned() {
         fn print_aligned(label: &str, value: impl Display) {
             println!("{:.<20} {}", label, value);
         }

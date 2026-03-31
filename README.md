@@ -1,4 +1,4 @@
-# Programmable benchmarks for Rust tests
+# zench
 
 [![GitHub](https://img.shields.io/badge/github-envidera%2Fzench-grey.svg?style=flat&logo=github)](https://github.com/envidera/zench)
 [![CI](https://github.com/envidera/zench/actions/workflows/ci.yml/badge.svg)](https://github.com/envidera/zench/actions)
@@ -6,36 +6,29 @@
 [![Latest version](https://img.shields.io/crates/v/zench.svg)](https://crates.io/crates/zench)
 [![Minimum Rust Version](https://img.shields.io/badge/rust-1.87.0%2B-blue.svg?maxAge=3600)](https://www.rust-lang.org/)
 
-
-Zench is a lightweight benchmark library for Rust that works anywhere in your codebase. Run performance tests with `cargo test`, then filter, assert, and react to benchmark results directly in code.
+Zench is a lightweight benchmarking library for Rust, built for seamless workflow integration, speed, and productivity. Run benchmarks anywhere in your codebase and integrate performance checks directly into your cargo test pipeline.
 
 ## Features
-- **Benchmark everywhere** - in `src/`, `tests/`, `examples/`, `benches/`
-- **Benchmark private functions** - directly inside unit tests
-- **Cargo-native** - runs with `cargo test` and `cargo bench`.
-- **Auto-scaling measurement** - benchmark from nanoseconds, to several seconds
-- **Configurable** - fine-tune to your project's specific needs.
-- **Programmable benchmarks** - filter, inspect, and react to benchmark data in code
-- **Performance Assertions** - warn or fail when performance expectations are not met
-- **Zero dependencies** - pure Rust standard library.
-- **Stable Rust** -  no nightly required.  
-
+- **Benchmark everywhere** - in `src/`, `tests/`, `examples/`, `benches/`, including private functions
+- **Data manipulation** - filter, inspect, and act on benchmark results in code
+- **Performance Assertions** - warn or panic when performance expectations are not met
+- **Cargo-native** - runs with `cargo test` and `cargo bench`
+- **Zero dependencies** - pure Rust standard library
+- **Stable Rust** -  no nightly required
 
 ## Install
 
 ```bash
-cargo add zench --dev
+cargo add zench
 ```
 or
 
 ```toml
-[dev-dependencies]
-zench = "0.1.3"
+[dependencies]
+zench = "0.2.0"
 ```
 
 ## Example
-
-**As easy as:**
 
 
 ```rust,ignore
@@ -54,9 +47,7 @@ fn fibonacci(n: u64) -> u64 {
 #[test]
 fn bench_fib() {
     bench!(
-        "fib 10" => fibonacci(bx(10))
-        // bx() is a thin wrapper around std::hint::black_box.
-        // You can use black_box directly if you prefer.
+        "fib 10" => fibonacci(bx(10))       
     );
 }
 ```
@@ -64,30 +55,20 @@ fn bench_fib() {
 Run the benchmark test
 
 ```bash
-ZENCH=warn cargo test --release -- --no-capture
+cargo test bench --release
 ```
 
 You'll get a detailed report directly in your terminal:
 
 ```txt
-Report
-
-Benchmark  fib 10
-Time       Median: 106.353ns
-Stability  Std.Dev: ± 0.500ns | CV: 0.47%
-Samples    Count: 36 | Iters/sample: 524,288 | Outliers: 5.56%
-Location   zench_examples/readme_examples/examples/ex_00.rs:26:9
-
-
-total time: 2.245204719 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-08 20:17:48 UTC
+───────┬───────────┬───────┬────────────┬──────────┬──────────────
+ name  │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+───────┼───────────┼───────┼────────────┼──────────┼──────────────
+fib 10 │ 106.416ns │ 0.22% │  ± 0.233ns │    2.78% │  36 / 524,288
+───────┴───────────┴───────┴────────────┴──────────┴──────────────
+total time: 2.239029501 sec
+rust: 1.94.1 (release) | zench: 0.2.x
 ```
-
-[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_00.rs)
 
 You can also test many cases at once
 
@@ -100,97 +81,50 @@ fn bench_fibs() {
         "fib 30" => fibonacci(bx(30)),
     );
 }
-```
-[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_00b.rs)
 
-## Advanced Usage
-
-Zench scales with your needs, offering full control over the benchmarking engine and reporting.
-
-See examples below.
-
-### 1. Manual Control (No Macro)
-
-If you prefer not to use macros, use the Bench type:
-
-```rust,ignore
-use zench::Bench;
-use zench::bx;
+// Alternative: using a loop
 
 #[test]
 fn bench_fibs() {
-    let mut b = Bench::new();
+    let mut b = bench!();
 
-    b.bench("fib 10", || {
-        fibonacci(bx(10));
-    });
-
-    b.bench("fib 20", || {
-        fibonacci(bx(20));
-    });
+    for case in [10, 20, 30] {
+        b.bench(case, || {
+            fibonacci(bx(case));
+        });
+    }
 }
 ```
-[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_01.rs)
-
-### 2. Custom Engine Builder
-
-Fine-tune how samples are collected, Zench provides three engines for this purpose:
-
-- `EngineAuto` - Fully automatic, stability-based (measures until results are stable enough)
-- `EngineFixedSamples` - Uses a fixed sample count
-- `EngineFullFixed` - Uses fixed values for sample count and Iters/sample values
-
-In this example, we will use `EngineFixedSamples` to define a fixed number of samples.
-
-```rust,ignore
-use zench::builder::EngineFixedSamples;
-use zench::bx;
-use zench::Bench;
-
-#[test]
-fn bench_fibs() {
-    let e = EngineFixedSamples::builder()
-        .samples(100) // samples count
-        .build();
-
-    let mut b = Bench::with_engine(e);
-
-    b.bench("fib 10", || {
-        fibonacci(bx(10));
-    });
-
-    b.bench("fib 20", || {
-        fibonacci(bx(20));
-    });
-}
-```
-
-Partial output
+Result
 
 ```txt
-Benchmark  fib 10
-Time       Median: 113.847ns
-Stability  Std.Dev: ± 0.454ns | CV: 0.40%
-Samples    Count: 100 <<--- here
-
-Benchmark  fib 20
-Time       Median: 14.302µs
-Stability  Std.Dev: ± 0.037µs | CV: 0.26%
-Samples    Count: 100 <<--- here
+───────┬───────────┬───────┬─────────────┬──────────┬──────────────
+ name  │  median   │  cv   │   std.dev   │ outliers │ samples/iters
+───────┼───────────┼───────┼─────────────┼──────────┼──────────────
+fib 10 │ 106.512ns │ 0.39% │   ± 0.415ns │    0.00% │  36 / 524,288
+fib 20 │  13.398µs │ 0.35% │   ± 0.047µs │    0.00% │   10 / 16,384
+fib 30 │   1.651ms │ 0.41% │   ± 0.007ms │    0.00% │      10 / 128
+───────┴───────────┴───────┴─────────────┴──────────┴──────────────
+total time: 7.41873511 sec
+rust: 1.94.1 (release) | zench: 0.2.x
 ```
 
-[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_02.rs)
 
-### 3. Benchmark Filtering
+## Data Manipulation
 
-Fine-tune how benchmark results are processed. Focus on the data that matters by sorting or limiting results.
+Zench provides access to all benchmark metrics through the report API, allowing you to manipulate them in code.
 
-In this example we will:
+1. `bench!` measures and prints the default report with benchmark data
+2. `Report` (optional) lets you manipulate benchmark data and report output
 
-- Define a report title - used to identify the benchmark group.
-- Apply two filters to refine the results:
-  - 1) Sort results by execution time (fastest to slowest)
-  - 2) Keep only the first two benchmarks
+
+![img](https://raw.githubusercontent.com/envidera/zench/main/design/export/report_diagram.min.png)
+
+### 1. Report Filtering
+
+Focus on the data that matters by sorting or limiting results.
+
+This example sorts benchmark results, keeps only the two fastest entries, and adds a title to identify the group.
 
 ```rust,ignore
 #[test]
@@ -202,280 +136,142 @@ fn bench_fibs() {
         "fib 8"  => fibonacci(bx(8)),
     )
     .report(|r| {
-        r.title("Top 2") // Define a title
-            .sort_by_median() // Sort by fastest first
-            .filter_n(2) // Top 2 benchmarks
-            .print();
+        let (mut faster_group, mut slower_group) = r
+            .sort_by_median() // Sort benchmarks by median time
+            .filter_n(2)      // Keep the first two results
+            .split();         // split at current state
+
+        faster_group
+            .title("Top 2")   // Define a group title
+            .print();         // Print the results
+
+        slower_group
+            .title("Rest")    // Define a group title
+            .print();         // Print the results
     });
 }
 ```
-
-[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_03.rs)
 
 The output will look like this:
 
 ```txt
-Report     Top 2                     <<--- our title
-Filters    Sort Median > Filter N(2) <<--- applied filters
+Top 2 > Sort Median > Filter N(2)
+──────┬──────────┬───────┬────────────┬──────────┬──────────────
+name  │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+──────┼──────────┼───────┼────────────┼──────────┼──────────────
+fib 5 │  9.299ns │ 0.58% │  ± 0.054ns │    4.00% │ 100 / 524,288
+fib 8 │ 40.298ns │ 0.39% │  ± 0.157ns │    4.21% │  95 / 524,288
+──────┴──────────┴───────┴────────────┴──────────┴──────────────
 
-                                     <<--- our two top benchs
-                                           ordered by time
-Benchmark  fib 5
-Time       Median: 9.294ns
-Stability  Std.Dev: ± 0.019ns | CV: 0.21%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 2.00%
-Location   zench_examples/readme_examples/examples/ex_03.rs:23:9
-
-Benchmark  fib 8
-Time       Median: 40.243ns
-Stability  Std.Dev: ± 0.110ns | CV: 0.27%
-Samples    Count: 95 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/readme_examples/examples/ex_03.rs:23:9
-
-
-total time: 7.124152612 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-10 10:45:35 UTC
+Rest
+───────┬───────────┬───────┬────────────┬──────────┬──────────────
+ name  │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+───────┼───────────┼───────┼────────────┼──────────┼──────────────
+fib 10 │ 106.412ns │ 0.39% │  ± 0.416ns │   13.89% │  36 / 524,288
+fib 12 │ 279.791ns │ 0.66% │  ± 1.852ns │    0.00% │  14 / 524,288
+───────┴───────────┴───────┴────────────┴──────────┴──────────────
+total time: 7.075344703 sec
+rust: 1.94.1 (release) | zench: 0.2.x
 ```
 
 
-### 4. Programmable Benchmarks
+### 2 - Report issues! (Warn or Panic)
 
-Fine-tune how benchmarks can trigger custom logic, and warn or fail tests when performance expectations are not met.
+`issue!` is a Zench macro that emits a `warn` diagnostic message by default. It is used as a replacement for `print!`, `debug!`, or `panic!` because its behavior can change depending on configuration.
 
-With full access to benchmark data, you can:
-
-- Read metrics
-- Apply custom logic
-- Decide whether a test should fail or pass
-- Generate custom output
-- Integrate with CI pipelines
-- Trigger automated actions
+`issue!` can be configured to panic if the `ZENCH` environment variable is set to `panic`:
 
 
-In this example, we will:
-- Compare three implementations of the same algorithm for squaring the elements of a Vec
-- Determine the fastest version
-- `issue!` if the known fastest version is no longer the fastest.
+```txt
+ZENCH=panic
+```
 
-**issue!**
+Currently, Zench focuses on relative comparisons and regression detection within the same run.
 
-Is a Zench macro that emits a diagnostic message that either warns or panics, depending on the `ZENCH` environment variable.
+In many cases, you already know the expected baseline or acceptable range for a function, and you can assert that directly in the benchmark.
 
-
+For example, if a function normally takes around 1 ms, you can simply
+fail the test if it exceeds 15% regression.
 
 ```rust,ignore
-// three implementations of the same algorithm
-
-pub fn square_loop(data: &[u64]) -> Vec<u64> {
-    let mut out = Vec::with_capacity(data.len());
-    for &v in data {
-        out.push(v * v);
-    }
-    out
-}
-
-pub fn square_iterator(data: &[u64]) -> Vec<u64> {
-    data.iter()
-        .map(|&v| v * v)
-        .collect()
-}
-
-pub fn square_fold(data: &[u64]) -> Vec<u64> {
-    data.iter()
-        .fold(Vec::with_capacity(data.len()), |mut acc, &v| {
-            acc.push(v * v);
-            acc
-        })
-}
-
 #[test]
-fn bench_fastest_version() {
-    use zench::bench;
-    use zench::bx;
-    
-    // Use the `issue!` macro.
-    use zench::issue;
-
-    let data: Vec<u64> = (0..100_000).collect();
-
+fn bench_simple_regression_example() {
     bench!(
-        "loop" => bx(square_loop(bx(&data))),
-        "iterator" => bx(square_iterator(bx(&data))),
-        "fold" => bx(square_fold(bx(&data))),
+        "my func" => sleep(Duration::from_millis(1)),
     )
     .report(|r| {
-        
-        // For this benchmark, we consider performance roughly equal
-        // when the time difference between implementations is within 10%.
-        // Benchmarks within this range are grouped as `faster_group`,
-        // and the remaining ones as `slower_group`.
-        let (mut faster_group, mut slower_group) = r
-            .sort_by_median()
-            .filter_proximity_pct(10.0)
-            
-            // Split the current filtered state from the remaining 
-            // benchmarks
-            .split();
+        r.print();
 
-        // We expect only one benchmark in the fastest group; 
-        // issue if more are present
-        if faster_group.len() > 1 {
-            issue!("some implementations changed performance");
-        }
+        // Expected baseline time
+        let baseline = Duration::from_millis(1).as_nanos() as f64;
+        let tolerance = 0.15; // 15%
 
-        // We expect the benchmark named "iterator" to be the fastest; 
-        // issue if it is not
-        if !faster_group
+        // get the first benchmark time (median)
+        let median = r
             .first()
             .unwrap()
-            .name()
-            .contains("iterator")
-        {
-            issue!("the iterator is no longer the fastest");
+            .median();
+
+        let upper = baseline * (1.0 + tolerance);
+        let lower = baseline * (1.0 - tolerance);
+
+        if median > upper {
+            issue!("relative regression (>15%)");
         }
 
-        faster_group
-            .title("Faster group")
-            .print();
+        if median < lower {
+            issue!("performance improvement (>15%)");
+        }
 
-        slower_group
-            .title("Slower group")
-            .print();
+        // Note: Ensure the system is in a stable state
+        // during benchmarking, as background activity
+        // can influence the results.
+
+        // Note: Fixed baseline values may vary across
+        // different hardware. Adjust the baseline
+        // accordingly for your system.
     });
 }
 ```
-Run the benchmark test
 
-```bash
-ZENCH=warn cargo test --release -- --no-capture
-```
-
-You'll get a detailed report
-
-```txt
-Report     Faster group
-Filters    Sort Median > Filter Proximity(10%)
-
-Benchmark  iterator
-Time       Median: 19.140µs
-Stability  Std.Dev: ± 0.936µs | CV: 4.94%
-Samples    Count: 7 | Iters/sample: 16,384 | Outliers: 0.00%
-Location   zench_examples/readme_examples/examples/ex_04.rs:48:9
-
-
-
-Report     Slower group
-
-Benchmark  loop
-Time       Median: 55.502µs
-Stability  Std.Dev: ± 0.198µs | CV: 0.36%
-Samples    Count: 9 | Iters/sample: 4,096 | Outliers: 0.00%
-Location   zench_examples/readme_examples/examples/ex_04.rs:48:9
-
-Benchmark  fold
-Time       Median: 114.093µs
-Stability  Std.Dev: ± 0.230µs | CV: 0.20%
-Samples    Count: 9 | Iters/sample: 2,048 | Outliers: 0.00%
-Location   zench_examples/readme_examples/examples/ex_04.rs:48:9
-
-
-total time: 7.926189331 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-03-09 01:25:21 UTC
-```
-
-**Warn and Panic**
-
-If you run the benchmark test with `warn`, and an issue! is triggered, the output will display warnings like this:
-
-```txt
-ZENCH=warn cargo test --release
-
-bench::issue::warn some implementations have changed performance
---> zench_examples/readme_examples/examples/ex_04.rs:66:17
-
-bench::issue::warn the iterator is no longer the fastest
---> zench_examples/readme_examples/examples/ex_04.rs:77:17
-```
-
-If you run the benchmark tests with `panic`, and an issue! is triggered, the output will display the messages and panic, like this:
-
-```txt
-ZENCH=panic cargo test --release
-
-bench::issue::panic some implementations have changed performance
---> zench_examples/readme_examples/examples/ex_04.rs:66:17
-
-bench::issue::panic the iterator is no longer the fastest
---> zench_examples/readme_examples/examples/ex_04.rs:77:17
-``` 
-
-[source](https://github.com/envidera/zench/blob/main/zench_examples/readme_examples/examples/ex_04.rs)
-
-
-### 5. More examples
+### 3. More examples
 
 See [zench_examples/](https://github.com/envidera/zench/blob/main/zench_examples) for a variety of examples.
 
 
-## Running benchmarks
+## Running benchmarks 
 
-Zench integrates with `cargo test` and `cargo bench`, but ignores all benchmarks by default.
-Benchmarks run only when the following conditions are met:
+Zench integrates with `cargo test` and `cargo bench`
 
-- The code is executed under the `release` profile
-- The `ZENCH` environment variable is set
+### From the terminal
 
-### In `src/`, `tests/`, `examples/` with `#[test]`
+With cargo test
 
 ```bash
-# Runs Standard Tests, including Zench Tests
-ZENCH=warn cargo test --release
-ZENCH=panic cargo test --release
+cargo test bench --release
 
-# Runs Standard Tests, Zench Tests are ignored
-cargo test 
-cargo test --release
+# or
 
-# No additional setup is required
+cargo test bench --release -- --no-capture
 ```
 
-### In `/benches`
+With cargo bench
+
 
 ```bash
-# Runs Standard Benchmarks, including Zench Benchmarks
-ZENCH=warn cargo bench 
-ZENCH=panic cargo bench 
+cargo bench
 
-# Runs Standard Benchmarks, Zench Benchmarks are ignored
-cargo bench 
-
-# Need to be configured in Cargo.toml
+# Also add the traditional benchmark configuration to Cargo.toml
 # [[bench]]
 # name = ""
 # harness = false
 ```
 
-> Note: `cargo bench` runs in release mode by default.
-
-> Note: Use `-- --no-capture` to see the benchmark report results.
->
-> ZENCH=warn cargo test --release -- --no-capture
-
-### Run in editor
+### From the editor
 
 Run benchmarks directly from your editor by clicking `▶ Run Test`. See the [pre-configured setups](https://github.com/envidera/zench/blob/main/docs/configure-editors.md).
 
-### Run in CI
-With a custom .github/workflows action
->> todo!
+
 
 
 ## Zench Goals
@@ -487,6 +283,17 @@ With a custom .github/workflows action
 
 
 ## Zench Limitations
+
+- **Function naming:** Benchmark test functions must start with `bench_`. Zench follows Cargo's test filtering conventions and runs only tests matching that prefix.
+
+```rust
+// cargo test bench --release
+#[test]
+fn bench_fib() {
+    // benchmark code
+}
+```
+
 
 - **Requires release profile** -  To ensure accurate results. Debug profile includes overhead and lack the optimizations necessary for realistic performance measurements.
 

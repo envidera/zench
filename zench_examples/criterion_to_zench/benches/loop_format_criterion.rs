@@ -22,16 +22,6 @@ criterion_main!(benches);
 
 /* RESULT
 
-                     |       Zench         |     Criterion
----------------------|---------------------|--------|----------------
-format_hello_world_0 | 20.154ns | 20.138ns | 20.822 | 20.687 ns
-format_hello_world_1 | 20.145ns | 22.725ns | 20.209 | 20.231 ns
-format_hello_world_2 | 22.735ns | 20.167ns | 20.779 | 23.498 ns
-format_hello_world_3 | 20.153ns | 22.742ns | 20.920 | 22.711 ns
-format_hello_world_4 | 22.724ns | 20.148ns | 21.496 | 20.414 ns
-
-
-
 Benchmarking format_hello_world_0: Collecting 100 samples in est format_hello_world_0
 time:   [20.628 ns 20.822 ns 21.074 ns]
 

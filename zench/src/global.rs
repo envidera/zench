@@ -106,11 +106,11 @@ mod command {
 
     #[derive(Clone, Debug, Default, PartialEq, Eq)]
     pub enum Command {
-        #[default]
-        NotSet, //ZENCH not defined in environment
+        NotSet,          //ZENCH not defined in environment
         Empty,           //ZENCH=
         Unknown(String), //ZENCH=asd
-        Warn,            //ZENCH=warn
+        #[default]
+        Warn, //ZENCH=warn
         Panic,           //ZENCH=panic
     }
 
@@ -124,12 +124,21 @@ mod command {
         }
 
         fn from_env_once() -> Self {
-            match std::env::var(KEY).as_deref() {
-                Ok(v) if v.eq_ignore_ascii_case(WARN_VALUE) => Self::Warn,
-                Ok(v) if v.eq_ignore_ascii_case(PANIC_VALUE) => Self::Panic,
-                Ok("") => Self::Empty,
-                Ok(v) => Self::Unknown(v.to_string()),
-                Err(_) => Self::NotSet,
+            let args: Vec<String> = std::env::args().collect();
+
+            let executed = args
+                .iter()
+                .any(|arg| arg == "bench" || arg == "--bench");
+            if executed {
+                match std::env::var(KEY).as_deref() {
+                    Ok(v) if v.eq_ignore_ascii_case(WARN_VALUE) => Self::Warn,
+                    Ok(v) if v.eq_ignore_ascii_case(PANIC_VALUE) => Self::Panic,
+                    Ok("") => Self::Warn,
+                    Ok(v) => Self::Unknown(v.to_string()),
+                    Err(_) => Self::Warn,
+                }
+            } else {
+                Self::NotSet
             }
         }
     }

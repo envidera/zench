@@ -14,9 +14,6 @@ criterion_group!(benches, bench_format);
 criterion_main!(benches);
 
 /* RESULT
-               | Zench    | Criterion
----------------------------------------
-time 50 millis | 50.226ms | 50.263 ms
 
 Benchmarking time 50 millis: Warming up for 3.0000 s
 Warning: Unable to complete 100 samples in 5.0s.

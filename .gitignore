@@ -2,6 +2,7 @@
 .tmp
 
 
+design/src
 design/export/*
 !design/export/*.min.*
 

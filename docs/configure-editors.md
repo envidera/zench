@@ -21,20 +21,9 @@ Edit the local settings file `.zed/settings.json`
           "command": "clippy", // default: "check"
         },
         "runnables": {
-          "extraArgs": ["--release"],
-          // extraEnv does not work properly
-          // "extraEnv": {
-          //  "ZENCH": "panic",
-          // },
+          "extraArgs": ["bench", "--release"],
         },
       },
-    },
-  },
-
-  // temporarily use in the terminal
-  "terminal": {
-    "env": {
-      "ZENCH": "warn", // or panic
     },
   },
 }
@@ -50,10 +39,8 @@ Edit the local settings file `.vscode/settings.json`
 {
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.runnables.extraArgs": [
-        "--release"
+      "bench",
+      "--release"
     ],
-    "rust-analyzer.runnables.extraEnv": {
-        "ZENCH": "warn" // or panic
-    },
 }
 ```

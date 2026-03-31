@@ -28,6 +28,7 @@ pub struct Column<'a> {
     pub padding: usize,
 }
 
+#[allow(unused)]
 #[derive(Debug, Clone, Copy, PartialEq, Default)]
 pub enum Alignment {
     #[default]
@@ -36,6 +37,7 @@ pub enum Alignment {
     Right,
 }
 
+#[allow(unused)]
 impl<'a> Column<'a> {
     pub fn new(name: &'a str) -> Self {
         Self {
@@ -82,6 +84,7 @@ impl<'a> Column<'a> {
     }
 }
 
+#[allow(unused)]
 impl<'a> Table<'a> {
     pub fn new() -> Self {
         Self {
@@ -243,6 +246,7 @@ pub struct TableBuilder<'a> {
     table: Table<'a>,
 }
 
+#[allow(unused)]
 impl<'a> TableBuilder<'a> {
     pub fn new() -> Self {
         Self {
@@ -301,6 +305,7 @@ impl<'a> TableBuilder<'a> {
 // ================================================================
 // Unit test
 // ================================================================
+#[allow(unused)]
 const WANT: &str = r#"
 ─────────────────┬───────────┬─────────┬───────────┬──────────┬──────────────
       name       │  median   │   cv    │  std.dev  │ outliers │ samples/iters

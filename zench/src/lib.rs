@@ -11,7 +11,6 @@
 //! ## Customization
 //!
 //! - [`builder`] - configure benchmarks programmatically
-//! - [`Report`] - customize report output
 //!
 //!
 //!

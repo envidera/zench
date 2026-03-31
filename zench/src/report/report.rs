@@ -1,4 +1,3 @@
-use super::super::location;
 use crate::benchmark::BenchSet;
 use crate::benchmark::Filter;
 use crate::benchmark::Sort;
@@ -87,19 +86,19 @@ impl Report {
 
     #[track_caller]
     pub fn filter_n(&mut self, value: usize) -> &mut Report {
-        self.apply_filter(Filter::N(value), location!());
+        self.apply_filter(Filter::N(value));
         self
     }
 
     #[track_caller]
     pub fn filter_proximity_pct(&mut self, value: f64) -> &mut Report {
-        self.apply_filter(Filter::Proximity(value), location!());
+        self.apply_filter(Filter::Proximity(value));
         self
     }
 
     #[track_caller]
     pub fn filter_pct(&mut self, value: f64) -> &mut Report {
-        self.apply_filter(Filter::Pct(value), location!());
+        self.apply_filter(Filter::Pct(value));
         self
     }
 
@@ -278,7 +277,7 @@ impl Report {
             .push(value);
     }
 
-    fn apply_filter(&mut self, filter: Filter, location: String) {
+    fn apply_filter(&mut self, filter: Filter) {
         let sort = self
             .sorted_by
             .unwrap_or_default();

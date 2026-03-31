@@ -191,7 +191,7 @@ mod test_performance {
     use crate::mock;
 
     #[test]
-    fn std_dev_performance() {
+    fn bench_std_dev_performance() {
         let data = mock::generate_data(100_000);
         let mean = algorithm::mean(&data);
 

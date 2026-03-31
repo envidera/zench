@@ -240,7 +240,7 @@ mod test_performance {
 
     #[ignore = "display purpose"]
     #[test]
-    fn test_algorithms() {
+    fn bench_algorithms() {
         const SAMPLES_COUNT_CASES: &[usize] = &[5_000, 100_000, 500_000, 1_000_000];
 
         for sample in SAMPLES_COUNT_CASES {

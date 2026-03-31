@@ -236,7 +236,7 @@ mod test_performance {
     //TODO: test bench with dirent data len
 
     #[test]
-    fn mad_performance() {
+    fn bench_mad_performance() {
         let mut data1 = mock::generate_data(100_000);
         let mut data2 = data1.clone();
         let mut data3 = data1.clone();

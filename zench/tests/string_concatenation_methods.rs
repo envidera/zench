@@ -5,7 +5,7 @@ fn main() {}
 
 #[ignore = "in development"]
 #[test]
-fn string_concatenation_performance() {
+fn bench_string_concatenation_performance() {
     let texts = gen_texts();
 
     for txt in &texts {

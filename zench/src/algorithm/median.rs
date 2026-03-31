@@ -75,7 +75,7 @@ mod test_performance {
     use crate::mock;
 
     #[test]
-    fn test_performance() {
+    fn bench_performance() {
         let mut data1 = mock::generate_data(10_000);
         let mut data2 = data1.clone();
 

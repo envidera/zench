@@ -24,7 +24,7 @@ mod tests {
     use zench::issue;
 
     #[test]
-    fn simple_regression_example() {
+    fn bench_simple_regression_example() {
         bench!(
                 "my func" =>{
                     sleep(Duration::from_millis(1));

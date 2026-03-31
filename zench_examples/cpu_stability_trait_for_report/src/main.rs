@@ -37,7 +37,7 @@ mod tests {
     use zench::issue;
 
     #[test]
-    fn test_system_stability() {
+    fn bench_system_stability() {
         let mut b = bench!();
         let mut list: Vec<String> = vec![String::new()];
 

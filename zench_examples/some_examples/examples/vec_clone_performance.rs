@@ -29,7 +29,7 @@ mod test_performance {
     ];
 
     #[test]
-    fn benchmark_clone() {
+    fn bench_clone() {
         let mut b = bench!();
 
         for &size in CASES {

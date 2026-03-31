@@ -68,7 +68,7 @@ mod tests {
     }
 
     #[test]
-    fn test_performance() {
+    fn bench_xtring() {
         let mut writer = std::io::BufWriter::new(std::io::sink());
 
         #[rustfmt::skip]
@@ -147,382 +147,105 @@ mod tests {
 }
 
 /*
-
-Report     micro:3
-Filters    Sort Median
-
-Benchmark  Xtring with_capacity
-Time       Median: 18.607ns
-Stability  Std.Dev: ± 0.049ns | CV: 0.27%
-Samples    Count: 100 | Iters/sample: 524,288 | Outliers: 1.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 23.616ns
-Stability  Std.Dev: ± 4.648ns | CV: 18.32%
-Samples    Count: 151 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 51.841ns
-Stability  Std.Dev: ± 0.220ns | CV: 0.42%
-Samples    Count: 74 | Iters/sample: 524,288 | Outliers: 5.41%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 63.640ns
-Stability  Std.Dev: ± 0.153ns | CV: 0.24%
-Samples    Count: 60 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 68.892ns
-Stability  Std.Dev: ± 0.211ns | CV: 0.31%
-Samples    Count: 56 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 9.380176014 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:10:07 UTC
-
-bench .....
-
-Report     small:10
-Filters    Sort Median
-
-Benchmark  Xtring with_capacity
-Time       Median: 39.639ns
-Stability  Std.Dev: ± 0.221ns | CV: 0.56%
-Samples    Count: 96 | Iters/sample: 524,288 | Outliers: 5.21%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 104.003ns
-Stability  Std.Dev: ± 0.484ns | CV: 0.46%
-Samples    Count: 37 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 136.071ns
-Stability  Std.Dev: ± 0.549ns | CV: 0.40%
-Samples    Count: 28 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 143.458ns
-Stability  Std.Dev: ± 0.361ns | CV: 0.25%
-Samples    Count: 27 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 158.278ns
-Stability  Std.Dev: ± 0.484ns | CV: 0.31%
-Samples    Count: 25 | Iters/sample: 524,288 | Outliers: 4.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 10.751016105 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:10:17 UTC
-
-bench .....
-
-Report     small_1:25
-Filters    Sort Median
-
-Benchmark  Xtring with_capacity
-Time       Median: 86.595ns
-Stability  Std.Dev: ± 0.132ns | CV: 0.15%
-Samples    Count: 45 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 204.139ns
-Stability  Std.Dev: ± 0.930ns | CV: 0.46%
-Samples    Count: 38 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 220.421ns
-Stability  Std.Dev: ± 1.257ns | CV: 0.57%
-Samples    Count: 35 | Iters/sample: 262,144 | Outliers: 5.71%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 233.639ns
-Stability  Std.Dev: ± 1.492ns | CV: 0.64%
-Samples    Count: 33 | Iters/sample: 262,144 | Outliers: 6.06%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 246.847ns
-Stability  Std.Dev: ± 1.235ns | CV: 0.50%
-Samples    Count: 31 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 10.711796721 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:10:28 UTC
-
-bench .....
-
-Report     small_2:50
-Filters    Sort Median
-
-Benchmark  Xtring with_capacity
-Time       Median: 187.067ns
-Stability  Std.Dev: ± 0.379ns | CV: 0.20%
-Samples    Count: 21 | Iters/sample: 524,288 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 269.807ns
-Stability  Std.Dev: ± 4.568ns | CV: 1.68%
-Samples    Count: 29 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 276.450ns
-Stability  Std.Dev: ± 0.805ns | CV: 0.29%
-Samples    Count: 28 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 327.012ns
-Stability  Std.Dev: ± 1.059ns | CV: 0.32%
-Samples    Count: 24 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 383.181ns
-Stability  Std.Dev: ± 0.814ns | CV: 0.21%
-Samples    Count: 20 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 11.062021367 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:10:39 UTC
-
-bench .....
-
-Report     small_3:100
-Filters    Sort Median
-
-Benchmark  Xtring with_capacity
-Time       Median: 354.724ns
-Stability  Std.Dev: ± 0.861ns | CV: 0.24%
-Samples    Count: 22 | Iters/sample: 262,144 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 415.852ns
-Stability  Std.Dev: ± 0.490ns | CV: 0.12%
-Samples    Count: 37 | Iters/sample: 131,072 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 460.421ns
-Stability  Std.Dev: ± 0.541ns | CV: 0.12%
-Samples    Count: 34 | Iters/sample: 131,072 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 470.405ns
-Stability  Std.Dev: ± 1.778ns | CV: 0.38%
-Samples    Count: 33 | Iters/sample: 131,072 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 497.693ns
-Stability  Std.Dev: ± 1.549ns | CV: 0.31%
-Samples    Count: 31 | Iters/sample: 131,072 | Outliers: 22.58%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 10.878953697 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:10:50 UTC
-
-bench ...test tests::test_performance has been running for over 60 seconds
-..
-
-Report     mid:1000
-Filters    Sort Median
-
-Benchmark  String
-Time       Median: 2.788µs
-Stability  Std.Dev: ± 0.005µs | CV: 0.19%
-Samples    Count: 22 | Iters/sample: 32,768 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 2.833µs
-Stability  Std.Dev: ± 0.001µs | CV: 0.04%
-Samples    Count: 22 | Iters/sample: 32,768 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring with_capacity
-Time       Median: 3.497µs
-Stability  Std.Dev: ± 0.025µs | CV: 0.70%
-Samples    Count: 36 | Iters/sample: 16,384 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 3.830µs
-Stability  Std.Dev: ± 0.003µs | CV: 0.07%
-Samples    Count: 32 | Iters/sample: 16,384 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 3.868µs
-Stability  Std.Dev: ± 0.003µs | CV: 0.07%
-Samples    Count: 32 | Iters/sample: 16,384 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 10.900060875 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:11:01 UTC
-
-bench .....
-
-Report     mid_2:10000
-Filters    Sort Median
-
-Benchmark  String with_capacity
-Time       Median: 26.712µs
-Stability  Std.Dev: ± 0.168µs | CV: 0.63%
-Samples    Count: 37 | Iters/sample: 2,048 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 27.092µs
-Stability  Std.Dev: ± 0.105µs | CV: 0.39%
-Samples    Count: 37 | Iters/sample: 2,048 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring with_capacity
-Time       Median: 35.813µs
-Stability  Std.Dev: ± 0.113µs | CV: 0.32%
-Samples    Count: 28 | Iters/sample: 2,048 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 36.486µs
-Stability  Std.Dev: ± 0.158µs | CV: 0.43%
-Samples    Count: 27 | Iters/sample: 2,048 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 36.787µs
-Stability  Std.Dev: ± 0.132µs | CV: 0.36%
-Samples    Count: 27 | Iters/sample: 2,048 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 10.868992033 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:11:12 UTC
-
-bench .....
-
-Report     large:100000
-Filters    Sort Median
-
-Benchmark  String with_capacity
-Time       Median: 275.897µs
-Stability  Std.Dev: ± 7.450µs | CV: 2.68%
-Samples    Count: 29 | Iters/sample: 256 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 287.592µs
-Stability  Std.Dev: ± 7.294µs | CV: 2.54%
-Samples    Count: 28 | Iters/sample: 256 | Outliers: 7.14%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 382.759µs
-Stability  Std.Dev: ± 7.250µs | CV: 1.90%
-Samples    Count: 21 | Iters/sample: 256 | Outliers: 19.05%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring with_capacity
-Time       Median: 383.686µs
-Stability  Std.Dev: ± 3.843µs | CV: 1.00%
-Samples    Count: 21 | Iters/sample: 256 | Outliers: 4.76%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 386.273µs
-Stability  Std.Dev: ± 2.885µs | CV: 0.75%
-Samples    Count: 21 | Iters/sample: 256 | Outliers: 9.52%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 11.274150903 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:11:23 UTC
-
-bench .....
-
-Report     large_2:1000000
-Filters    Sort Median
-
-Benchmark  Xtring with_capacity
-Time       Median: 5.102ms
-Stability  Std.Dev: ± 0.073ms | CV: 1.44%
-Samples    Count: 25 | Iters/sample: 16 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring.print()
-Time       Median: 11.770ms
-Stability  Std.Dev: ± 0.384ms | CV: 3.23%
-Samples    Count: 42 | Iters/sample: 4 | Outliers: 11.90%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  Xtring
-Time       Median: 12.793ms
-Stability  Std.Dev: ± 0.656ms | CV: 5.18%
-Samples    Count: 20 | Iters/sample: 8 | Outliers: 10.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String with_capacity
-Time       Median: 15.168ms
-Stability  Std.Dev: ± 0.162ms | CV: 1.06%
-Samples    Count: 33 | Iters/sample: 4 | Outliers: 3.03%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-Benchmark  String
-Time       Median: 15.882ms
-Stability  Std.Dev: ± 0.464ms | CV: 2.91%
-Samples    Count: 32 | Iters/sample: 4 | Outliers: 0.00%
-Location   zench_examples/some_examples/examples/xtring.rs:90:13
-
-total time: 10.89079471 sec
-rust: 1.93.1 | profile release
-zench: 0.1.0
-system: linux x86_64
-cpu: AMD Ryzen 5 5600GT with Radeon Graphics (x12 threads)
-2026-02-23 16:11:34 UTC
+micro:3 > Sort Median
+─────────────────────┬──────────┬───────┬────────────┬──────────┬──────────────
+        name         │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────────┼──────────┼───────┼────────────┼──────────┼──────────────
+Xtring with_capacity │ 17.973ns │ 0.42% │  ± 0.076ns │    7.00% │ 100 / 524,288
+Xtring               │ 24.482ns │ 0.47% │  ± 0.116ns │    1.00% │ 100 / 524,288
+Xtring.print()       │ 51.252ns │ 0.65% │  ± 0.335ns │    0.00% │  75 / 524,288
+String               │ 56.872ns │ 0.36% │  ± 0.204ns │    5.97% │  67 / 524,288
+String with_capacity │ 71.398ns │ 0.27% │  ± 0.196ns │    1.85% │  54 / 524,288
+─────────────────────┴──────────┴───────┴────────────┴──────────┴──────────────
+
+small:10 > Sort Median
+─────────────────────┬───────────┬───────┬────────────┬──────────┬──────────────
+        name         │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────────┼───────────┼───────┼────────────┼──────────┼──────────────
+Xtring with_capacity │  38.849ns │ 0.34% │  ± 0.131ns │    2.02% │  99 / 524,288
+Xtring               │ 124.943ns │ 0.24% │  ± 0.304ns │    0.00% │  31 / 524,288
+String               │ 135.669ns │ 0.26% │  ± 0.355ns │    0.00% │  29 / 524,288
+String with_capacity │ 148.643ns │ 0.36% │  ± 0.540ns │    0.00% │  26 / 524,288
+Xtring.print()       │ 159.455ns │ 0.59% │  ± 0.935ns │    0.00% │  24 / 524,288
+─────────────────────┴───────────┴───────┴────────────┴──────────┴──────────────
+
+small_1:25 > Sort Median
+─────────────────────┬───────────┬───────┬────────────┬──────────┬──────────────
+        name         │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────────┼───────────┼───────┼────────────┼──────────┼──────────────
+Xtring with_capacity │  84.745ns │ 0.27% │  ± 0.231ns │    4.44% │  45 / 524,288
+String               │ 223.395ns │ 0.08% │  ± 0.176ns │    0.00% │  18 / 524,288
+String with_capacity │ 228.086ns │ 0.20% │  ± 0.462ns │    0.00% │  17 / 524,288
+Xtring.print()       │ 237.765ns │ 0.60% │  ± 1.419ns │    0.00% │  17 / 524,288
+Xtring               │ 244.353ns │ 1.22% │  ± 3.000ns │    0.00% │  16 / 524,288
+─────────────────────┴───────────┴───────┴────────────┴──────────┴──────────────
+
+small_2:50 > Sort Median
+─────────────────────┬───────────┬───────┬────────────┬──────────┬──────────────
+        name         │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────────┼───────────┼───────┼────────────┼──────────┼──────────────
+Xtring with_capacity │ 174.606ns │ 0.26% │  ± 0.456ns │    0.00% │  22 / 524,288
+String with_capacity │ 309.387ns │ 0.24% │  ± 0.738ns │    7.69% │  13 / 524,288
+String               │ 340.719ns │ 0.65% │  ± 2.203ns │    8.33% │  12 / 524,288
+Xtring.print()       │ 374.401ns │ 0.29% │  ± 1.092ns │    0.00% │  11 / 524,288
+Xtring               │ 380.420ns │ 0.26% │  ± 1.009ns │    9.09% │  11 / 524,288
+─────────────────────┴───────────┴───────┴────────────┴──────────┴──────────────
+
+small_3:100 > Sort Median
+─────────────────────┬───────────┬───────┬────────────┬──────────┬──────────────
+        name         │  median   │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────────┼───────────┼───────┼────────────┼──────────┼──────────────
+Xtring with_capacity │ 365.578ns │ 0.60% │  ± 2.198ns │    9.09% │  11 / 524,288
+String with_capacity │ 449.928ns │ 0.10% │  ± 0.465ns │    0.00% │   9 / 524,288
+String               │ 465.769ns │ 0.81% │  ± 3.748ns │    0.00% │   9 / 524,288
+Xtring.print()       │ 561.551ns │ 0.16% │  ± 0.877ns │    0.00% │   7 / 524,288
+Xtring               │ 641.139ns │ 0.52% │  ± 3.340ns │    0.00% │  12 / 262,144
+─────────────────────┴───────────┴───────┴────────────┴──────────┴──────────────
+
+mid:1000 > Sort Median
+─────────────────────┬──────────┬───────┬─────────────┬──────────┬──────────────
+        name         │  median  │  cv   │   std.dev   │ outliers │ samples/iters
+─────────────────────┼──────────┼───────┼─────────────┼──────────┼──────────────
+String               │  2.629µs │ 0.19% │   ± 0.005µs │    0.00% │   12 / 65,536
+String with_capacity │  2.898µs │ 0.15% │   ± 0.004µs │    0.00% │   11 / 65,536
+Xtring with_capacity │  3.502µs │ 0.32% │   ± 0.011µs │    0.00% │    9 / 65,536
+Xtring.print()       │  3.736µs │ 0.60% │   ± 0.022µs │    0.00% │    9 / 65,536
+Xtring               │  4.879µs │ 0.19% │   ± 0.009µs │    0.00% │   13 / 32,768
+─────────────────────┴──────────┴───────┴─────────────┴──────────┴──────────────
+
+mid_2:10000 > Sort Median
+─────────────────────┬───────────┬───────┬─────────────┬──────────┬──────────────
+        name         │  median   │  cv   │   std.dev   │ outliers │ samples/iters
+─────────────────────┼───────────┼───────┼─────────────┼──────────┼──────────────
+String               │  25.320µs │ 0.51% │   ± 0.128µs │   20.00% │    10 / 8,192
+String with_capacity │  28.152µs │ 0.34% │   ± 0.096µs │    0.00% │     9 / 8,192
+Xtring.print()       │  34.604µs │ 0.30% │   ± 0.103µs │   12.50% │     8 / 8,192
+Xtring with_capacity │  36.914µs │ 1.44% │   ± 0.526µs │    0.00% │    14 / 4,096
+Xtring               │  42.466µs │ 0.41% │   ± 0.175µs │    0.00% │    12 / 4,096
+─────────────────────┴───────────┴───────┴─────────────┴──────────┴──────────────
+
+large:100000 > Sort Median
+─────────────────────┬────────────┬───────┬──────────────┬──────────┬──────────────
+        name         │   median   │  cv   │   std.dev    │ outliers │ samples/iters
+─────────────────────┼────────────┼───────┼──────────────┼──────────┼──────────────
+String               │  270.578µs │ 2.19% │    ± 5.956µs │    0.00% │     8 / 1,024
+String with_capacity │  314.230µs │ 4.24% │   ± 12.903µs │    0.00% │     7 / 1,024
+Xtring.print()       │  363.982µs │ 0.95% │    ± 3.457µs │    9.09% │      11 / 512
+Xtring with_capacity │  400.215µs │ 1.39% │    ± 5.573µs │   10.00% │      10 / 512
+Xtring               │  480.315µs │ 1.49% │    ± 7.148µs │   11.11% │       9 / 512
+─────────────────────┴────────────┴───────┴──────────────┴──────────┴──────────────
+
+large_2:1000000 > Sort Median
+─────────────────────┬──────────┬───────┬────────────┬──────────┬──────────────
+        name         │  median  │  cv   │  std.dev   │ outliers │ samples/iters
+─────────────────────┼──────────┼───────┼────────────┼──────────┼──────────────
+Xtring with_capacity │  5.949ms │ 3.49% │  ± 0.207ms │    0.00% │       11 / 32
+Xtring               │ 12.628ms │ 2.96% │  ± 0.371ms │    0.00% │       10 / 16
+Xtring.print()       │ 12.663ms │ 1.51% │  ± 0.190ms │    0.00% │       10 / 16
+String with_capacity │ 16.653ms │ 0.56% │  ± 0.094ms │   12.50% │        8 / 16
+String               │ 17.065ms │ 0.85% │  ± 0.144ms │    0.00% │        8 / 16
+─────────────────────┴──────────┴───────┴────────────┴──────────┴──────────────
+total time: 12.614359046 sec
+rust: 1.94.1 (release) | zench: 0.1.4
 
 */

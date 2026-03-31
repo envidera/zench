@@ -1,10 +1,10 @@
 #![allow(clippy::let_and_return)]
-//#![doc = include_str!(concat!("../", std::env!("CARGO_PKG_README")))]
+#![doc = include_str!(concat!("../", std::env!("CARGO_PKG_README")))]
 //!
 //! # Item Details
 //! ## Ready-to-use
 //!
-//! - [`Bench`] or [`bench!`] - for benchmarking
+//! - [`bench!`] - for benchmarking
 //! - [`bx`] - prevents compiler optimizations
 //! - [`issue`] - report unexpected behavior with warn or panic state
 //!
@@ -82,10 +82,16 @@ pub mod dev {
 pub use crate::engine::bx;
 
 pub mod builder {
-    pub use crate::bench::Bench;
-    pub use crate::engine::EngineAuto;
-    pub use crate::engine::EngineFixedSamples;
-    pub use crate::engine::EngineFullFixed;
     pub use crate::report::Report;
+
+    #[doc(hidden)]
+    pub use crate::bench::Bench;
+    #[doc(hidden)]
+    pub use crate::engine::EngineAuto;
+    #[doc(hidden)]
+    pub use crate::engine::EngineFixedSamples;
+    #[doc(hidden)]
+    pub use crate::engine::EngineFullFixed;
+    #[doc(hidden)]
     pub use crate::warmup::Warmup;
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1
+
+### fixed
+ - fix(command): remove 'bench' requirement to execute benchmarking. mod tests were unintentionally triggering benchmarks due to the cargo test bench keyword.
+
 ## 0.2.0
 
 ### Highlights

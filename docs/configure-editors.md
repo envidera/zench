@@ -21,7 +21,7 @@ Edit the local settings file `.zed/settings.json`
           "command": "clippy", // default: "check"
         },
         "runnables": {
-          "extraArgs": ["bench", "--release"],
+          "extraArgs": ["--release"],
         },
       },
     },
@@ -39,7 +39,6 @@ Edit the local settings file `.vscode/settings.json`
 {
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.runnables.extraArgs": [
-      "bench",
       "--release"
     ],
 }

@@ -124,11 +124,8 @@ mod command {
         }
 
         fn from_env_once() -> Self {
-            let args: Vec<String> = std::env::args().collect();
+            let executed = !in_debug_mode();
 
-            let executed = args
-                .iter()
-                .any(|arg| arg == "bench" || arg == "--bench");
             if executed {
                 match std::env::var(KEY).as_deref() {
                     Ok(v) if v.eq_ignore_ascii_case(WARN_VALUE) => Self::Warn,

@@ -25,7 +25,7 @@ or
 
 ```toml
 [dependencies]
-zench = "0.2.0"
+zench = "0.2.1"
 ```
 
 ## Example
@@ -248,10 +248,10 @@ Zench integrates with `cargo test` and `cargo bench`
 With cargo test
 
 ```bash
+# Run only tests with names starting with "bench_"
 cargo test bench --release
 
 # or
-
 cargo test bench --release -- --no-capture
 ```
 
@@ -284,7 +284,7 @@ Run benchmarks directly from your editor by clicking `▶ Run Test`. See the [pr
 
 ## Zench Limitations
 
-- **Function naming:** Benchmark test functions must start with `bench_`. Zench follows Cargo's test filtering conventions and runs only tests matching that prefix.
+- **Function naming:** It is recommended that Benchmark test functions start with `bench_` to enable filtering via Cargo. Zench follows Cargo's test filtering conventions to distinguish between regular tests and benchmark tests.
 
 ```rust
 // cargo test bench --release

@@ -101,7 +101,7 @@ checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
 
 [[package]]
 name = "cpu_stability_trait_for_report"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "zench",
 ]
@@ -141,7 +141,7 @@ dependencies = [
 
 [[package]]
 name = "criterion_to_zench"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "criterion",
  "zench",
@@ -315,7 +315,7 @@ dependencies = [
 
 [[package]]
 name = "readme_examples"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "zench",
 ]
@@ -409,7 +409,7 @@ dependencies = [
 
 [[package]]
 name = "some_examples"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "zench",
 ]
@@ -532,7 +532,7 @@ dependencies = [
 
 [[package]]
 name = "zench"
-version = "0.2.0"
+version = "0.2.1"
 
 [[package]]
 name = "zerocopy"
